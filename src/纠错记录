@@ -1,0 +1,54 @@
+
+sim_setting = SimRobotSetting()
+
+SimRobotInterface initialized:
+  urdf_filename: None
+  use_fixed_base: False
+  base_name/limbs/endeffs/joints: (7,) [] [] []
+  nq,nv,nj,ne: 7 6 0 0
+  base_init_pos: [0 0 0 0 0 0 1]
+  base_init_vel: [0. 0. 0. 0. 0. 0.]
+  joint_init_pos: []
+  joint_init_vel: []
+  gravity: [ 0.     0.    -0.981]
+  IMU biases acc/gyro: [0. 0. 0.] [0. 0. 0.]
+  IMU thermal acc/gyro: [0. 0. 0.] [0. 0. 0.]
+  IMU noise params acc_bias/gyro_bias/acc_thermal/gyro_thermal: 0.0001 3.09e-05 1.962e-05 8.73e-07
+  
+  sim_setting:
+  xml_filename: /home/liu/sim_ws/src/mjcsim/models/b2z1/b2z1.xml
+  use_fixed_base: False
+  base_name: base_link
+  limb_names: ['FL', 'FR', 'RL', 'RR', 'z1']
+  limb_endeff_names: ['FL_foot', 'FR_foot', 'RL_foot', 'RR_foot', 'link06']
+  joint_names: ['FL_hip_joint', 'FL_thigh_joint', 'FL_calf_joint', 
+		  'FR_hip_joint', 'FR_thigh_joint', 'FR_calf_joint', 
+		  'RL_hip_joint', 'RL_thigh_joint', 'RL_calf_joint', 
+		  'RR_hip_joint', 'RR_thigh_joint', 'RR_calf_joint', 
+		  'joint1', 'joint2', 'joint3', 'joint4', 'joint5', 'joint6']
+  base_init_pos: [0.  0.  0.8 0.  0.  0.  1. ]
+  base_init_vel: [0. 0. 0. 0. 0. 0.]
+  joint_init_pos: [ 0.    0.75 -1.5   
+		  0.    0.75 -1.5   
+		  0.    0.75 -1.5   
+		  0.    0.75 -1.5
+		  0.    0.5  -1.    
+		  0.3   0.    0.  ]
+  joint_init_vel: [0. 0. 0. 
+		  0. 0. 0. 
+		  0. 0. 0. 
+		  0. 0. 0. 
+		  0. 0. 0. 0. 0. 0.]
+		  
+		  sim_robot:
+  xml_filename: /home/liu/sim_ws/src/mjcsim/models/b2z1/b2z1.xml
+  use_fixed_base: False
+  limb_names: ['FL', 'FR', 'RL', 'RR', 'z1']
+  limb_endeff_names: ['FL_foot', 'FR_foot', 'RL_foot', 'RR_foot', 'link06']
+  joint_names: ['FL_hip_joint', 'FL_thigh_joint', 'FL_calf_joint', 'FR_hip_joint', 'FR_thigh_joint', 'FR_calf_joint', 'RL_hip_joint', 'RL_thigh_joint', 'RL_calf_joint', 'RR_hip_joint', 'RR_thigh_joint', 'RR_calf_joint', 'joint1', 'joint2', 'joint3', 'joint4', 'joint5', 'joint6']
+  base_init_pos: [0.  0.  0.8 0.  0.  0.  1. ]
+  base_init_vel: [0. 0. 0. 0. 0. 0.]
+  joint_init_pos: [ 0.    0.75 -1.5   0.    0.75 -1.5   0.    0.75 -1.5   0.    0.75 -1.5
+  0.    0.5  -1.    0.3   0.    0.  ]
+  joint_init_vel: [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+  nq,nv,nj,ne: None None None None
