@@ -1,0 +1,38 @@
+running egg_info
+creating ../../build/mjcsim/mjcsim.egg-info
+writing ../../build/mjcsim/mjcsim.egg-info/PKG-INFO
+writing dependency_links to ../../build/mjcsim/mjcsim.egg-info/dependency_links.txt
+writing entry points to ../../build/mjcsim/mjcsim.egg-info/entry_points.txt
+writing requirements to ../../build/mjcsim/mjcsim.egg-info/requires.txt
+writing top-level names to ../../build/mjcsim/mjcsim.egg-info/top_level.txt
+writing manifest file '../../build/mjcsim/mjcsim.egg-info/SOURCES.txt'
+reading manifest file '../../build/mjcsim/mjcsim.egg-info/SOURCES.txt'
+adding license file 'LICENSE'
+writing manifest file '../../build/mjcsim/mjcsim.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/liu/sim_ws/build/mjcsim/build
+creating /home/liu/sim_ws/build/mjcsim/build/lib
+creating /home/liu/sim_ws/build/mjcsim/build/lib/mjcsim
+copying python/mjcsim/env.py -> /home/liu/sim_ws/build/mjcsim/build/lib/mjcsim
+copying python/mjcsim/joint_controller.py -> /home/liu/sim_ws/build/mjcsim/build/lib/mjcsim
+copying python/mjcsim/__init__.py -> /home/liu/sim_ws/build/mjcsim/build/lib/mjcsim
+copying python/mjcsim/sim_robot_interface.py -> /home/liu/sim_ws/build/mjcsim/build/lib/mjcsim
+copying python/mjcsim/sim_robot_setting.py -> /home/liu/sim_ws/build/mjcsim/build/lib/mjcsim
+running install
+running install_lib
+creating /home/liu/sim_ws/install/mjcsim/lib/python3.10/site-packages/mjcsim
+copying /home/liu/sim_ws/build/mjcsim/build/lib/mjcsim/env.py -> /home/liu/sim_ws/install/mjcsim/lib/python3.10/site-packages/mjcsim
+copying /home/liu/sim_ws/build/mjcsim/build/lib/mjcsim/joint_controller.py -> /home/liu/sim_ws/install/mjcsim/lib/python3.10/site-packages/mjcsim
+copying /home/liu/sim_ws/build/mjcsim/build/lib/mjcsim/__init__.py -> /home/liu/sim_ws/install/mjcsim/lib/python3.10/site-packages/mjcsim
+copying /home/liu/sim_ws/build/mjcsim/build/lib/mjcsim/sim_robot_interface.py -> /home/liu/sim_ws/install/mjcsim/lib/python3.10/site-packages/mjcsim
+copying /home/liu/sim_ws/build/mjcsim/build/lib/mjcsim/sim_robot_setting.py -> /home/liu/sim_ws/install/mjcsim/lib/python3.10/site-packages/mjcsim
+byte-compiling /home/liu/sim_ws/install/mjcsim/lib/python3.10/site-packages/mjcsim/env.py to env.cpython-310.pyc
+byte-compiling /home/liu/sim_ws/install/mjcsim/lib/python3.10/site-packages/mjcsim/joint_controller.py to joint_controller.cpython-310.pyc
+byte-compiling /home/liu/sim_ws/install/mjcsim/lib/python3.10/site-packages/mjcsim/__init__.py to __init__.cpython-310.pyc
+byte-compiling /home/liu/sim_ws/install/mjcsim/lib/python3.10/site-packages/mjcsim/sim_robot_interface.py to sim_robot_interface.cpython-310.pyc
+byte-compiling /home/liu/sim_ws/install/mjcsim/lib/python3.10/site-packages/mjcsim/sim_robot_setting.py to sim_robot_setting.cpython-310.pyc
+running install_egg_info
+Copying ../../build/mjcsim/mjcsim.egg-info to /home/liu/sim_ws/install/mjcsim/lib/python3.10/site-packages/mjcsim-1.0.0-py3.10.egg-info
+running install_scripts
+writing list of installed files to '/home/liu/sim_ws/build/mjcsim/install.log'

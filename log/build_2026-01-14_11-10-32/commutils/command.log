@@ -1,0 +1,4 @@
+Invoking command in '/home/liu/sim_ws/build/commutils': CONDA_PROMPT_MODIFIER=(mujoco) /usr/bin/cmake --build /home/liu/sim_ws/build/commutils -- -j12 -l12
+Invoked command in '/home/liu/sim_ws/build/commutils' returned '0': CONDA_PROMPT_MODIFIER=(mujoco) /usr/bin/cmake --build /home/liu/sim_ws/build/commutils -- -j12 -l12
+Invoking command in '/home/liu/sim_ws/build/commutils': CONDA_PROMPT_MODIFIER=(mujoco) /usr/bin/cmake --install /home/liu/sim_ws/build/commutils
+Invoked command in '/home/liu/sim_ws/build/commutils' returned '0': CONDA_PROMPT_MODIFIER=(mujoco) /usr/bin/cmake --install /home/liu/sim_ws/build/commutils

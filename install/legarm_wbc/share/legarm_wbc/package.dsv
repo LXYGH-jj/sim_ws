@@ -1,0 +1,3 @@
+source;share/legarm_wbc/hook/pythonpath.ps1
+source;share/legarm_wbc/hook/pythonpath.dsv
+source;share/legarm_wbc/hook/pythonpath.sh

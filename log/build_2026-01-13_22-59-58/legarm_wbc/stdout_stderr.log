@@ -1,0 +1,28 @@
+-- The C compiler identification is GNU 11.4.0
+-- The CXX compiler identification is GNU 11.4.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found Python: /usr/bin/python3.10 (found version "3.10.12") found components: Interpreter 
+<string>:1: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+<string>:1: DeprecationWarning: The distutils.sysconfig module is deprecated, use sysconfig instead
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/liu/sim_ws/build/legarm_wbc
+-- Install configuration: ""
+-- Installing: /home/liu/sim_ws/install/legarm_wbc/lib/python3.10/site-packages/legarm_wbc
+-- Installing: /home/liu/sim_ws/install/legarm_wbc/lib/python3.10/site-packages/legarm_wbc/controller_setting.py
+-- Installing: /home/liu/sim_ws/install/legarm_wbc/lib/python3.10/site-packages/legarm_wbc/robot_wrapper.py
+-- Installing: /home/liu/sim_ws/install/legarm_wbc/lib/python3.10/site-packages/legarm_wbc/hqp_data.py
+-- Installing: /home/liu/sim_ws/install/legarm_wbc/lib/python3.10/site-packages/legarm_wbc/__init__.py
+-- Installing: /home/liu/sim_ws/install/legarm_wbc/lib/python3.10/site-packages/legarm_wbc/command.py
+-- Installing: /home/liu/sim_ws/install/legarm_wbc/lib/python3.10/site-packages/legarm_wbc/whole_body_controller.py
+-- Installing: /home/liu/sim_ws/install/legarm_wbc/lib/python3.10/site-packages/legarm_wbc/hqp_solver.py
+-- Installing: /home/liu/sim_ws/install/legarm_wbc/lib/python3.10/site-packages/legarm_wbc/geometry.py

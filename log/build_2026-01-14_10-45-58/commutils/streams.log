@@ -1,0 +1,20 @@
+[0.009s] Invoking command in '/home/liu/sim_ws/build/commutils': CONDA_PROMPT_MODIFIER=(mujoco) /usr/bin/cmake --build /home/liu/sim_ws/build/commutils -- -j12 -l12
+[0.048s] [100%] Built target test_commutils
+[0.174s] Invoked command in '/home/liu/sim_ws/build/commutils' returned '0': CONDA_PROMPT_MODIFIER=(mujoco) /usr/bin/cmake --build /home/liu/sim_ws/build/commutils -- -j12 -l12
+[0.175s] Invoking command in '/home/liu/sim_ws/build/commutils': CONDA_PROMPT_MODIFIER=(mujoco) /usr/bin/cmake --install /home/liu/sim_ws/build/commutils
+[0.179s] -- Install configuration: ""
+[0.179s] -- Up-to-date: /home/liu/sim_ws/install/commutils/include
+[0.179s] -- Up-to-date: /home/liu/sim_ws/install/commutils/include/commutils
+[0.179s] -- Up-to-date: /home/liu/sim_ws/install/commutils/include/commutils/yaml
+[0.179s] -- Up-to-date: /home/liu/sim_ws/install/commutils/include/commutils/yaml/yaml_eigen.hpp
+[0.179s] -- Up-to-date: /home/liu/sim_ws/install/commutils/include/commutils/yaml/yaml_tools.hpp
+[0.179s] -- Up-to-date: /home/liu/sim_ws/install/commutils/include/commutils/yaml/yaml_cpp_fwd.hpp
+[0.179s] -- Up-to-date: /home/liu/sim_ws/install/commutils/include/commutils/csv
+[0.179s] -- Up-to-date: /home/liu/sim_ws/install/commutils/include/commutils/csv/csv_writer.hpp
+[0.179s] -- Up-to-date: /home/liu/sim_ws/install/commutils/share/commutils/cmake/commutilsConfig.cmake
+[0.179s] -- Up-to-date: /home/liu/sim_ws/install/commutils/share/commutils/cmake/commutilsConfigVersion.cmake
+[0.179s] -- Up-to-date: /home/liu/sim_ws/install/commutils/share/commutils/cmake/commutilsTargets.cmake
+[0.179s] -- Up-to-date: /home/liu/sim_ws/install/commutils/lib/python3.10/site-packages/commutils
+[0.179s] -- Up-to-date: /home/liu/sim_ws/install/commutils/lib/python3.10/site-packages/commutils/yaml_parser.py
+[0.179s] -- Up-to-date: /home/liu/sim_ws/install/commutils/lib/python3.10/site-packages/commutils/__init__.py
+[0.185s] Invoked command in '/home/liu/sim_ws/build/commutils' returned '0': CONDA_PROMPT_MODIFIER=(mujoco) /usr/bin/cmake --install /home/liu/sim_ws/build/commutils

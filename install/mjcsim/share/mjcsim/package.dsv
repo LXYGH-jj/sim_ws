@@ -1,0 +1,3 @@
+source;share/mjcsim/hook/pythonpath.ps1
+source;share/mjcsim/hook/pythonpath.dsv
+source;share/mjcsim/hook/pythonpath.sh

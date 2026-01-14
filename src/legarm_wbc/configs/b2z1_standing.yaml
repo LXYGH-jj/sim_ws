@@ -1,0 +1,192 @@
+################################################################################
+# Main configs
+################################################################################
+timestep: &timestep 0.002
+scale: 1.0
+duration: 30 #[s]
+
+
+################################################################################
+# robot configs
+################################################################################
+sim_robot_variables:
+  xml_filename: "/models/b2z1/b2z1.xml"
+  urdf_filename: "/models/b2z1.urdf"
+
+  use_fixed_base: False
+
+  base_name: "base_link"
+  joint_names: [
+    "FL_hip_joint", "FL_thigh_joint", "FL_calf_joint", 
+    "FR_hip_joint", "FR_thigh_joint", "FR_calf_joint", 
+    "RL_hip_joint", "RL_thigh_joint", "RL_calf_joint", 
+    "RR_hip_joint", "RR_thigh_joint", "RR_calf_joint", 
+    "joint1", "joint2", "joint3", "joint4","joint5","joint6",
+  ]  # pinocchio order
+  limb_names: ["FL", "FR", "RL", "RR", "z1"]
+  limb_endeff_names: ["FL_foot", "FR_foot", "RL_foot", "RR_foot", "link06"]
+
+  base_init_pos: [0., 0., 0.45, 0., 0., 0., 1.] # pose
+  base_init_vel: [0., 0., 0., 0., 0., 0.]
+  joint_init_pos: [0., 0.75, -1.5, 
+                   0., 0.75, -1.5, 
+                   0., 0.75, -1.5, 
+                   0., 0.75, -1.5,
+                   0.,0.,0.,0.,0.,0.]
+                  #  0.,0.,0.,0.,0.,0.,0.]
+                  #  0.,0.5,-1,0.3,0,0.]
+  joint_init_vel: [0., 0., 0., 
+                   0., 0., 0., 
+                   0., 0., 0., 
+                   0., 0., 0.,
+                   0.,0.,0.,0.,0.,0.]
+                  #  0., 0., 0., 0., 0.,0.,0.]
+
+
+################################################################################
+# control configs
+################################################################################
+controller_variables:
+  xml_filename: "/models/b2z1/b2z1.xml"
+  urdf_filename: "/models/b2z1.urdf"
+
+  base_name: "base_link"
+  leg_names: ["FL", "FR", "RL", "RR"]
+  arm_names: ["z1"]
+  limb_names: ["FL", "FR", "RL", "RR", "z1"]
+  leg_endeff_names: ["FL_foot", "FR_foot", "RL_foot", "RR_foot"]
+  arm_endeff_names: ["link06"]
+  limb_endeff_names: ["FL_foot", "FR_foot", "RL_foot", "RR_foot", "link06"]
+  joint_names: [
+    "FL_hip_joint", "FL_thigh_joint", "FL_calf_joint", 
+    "FR_hip_joint", "FR_thigh_joint", "FR_calf_joint", 
+    "RL_hip_joint", "RL_thigh_joint", "RL_calf_joint", 
+    "RR_hip_joint", "RR_thigh_joint", "RR_calf_joint", 
+    "joint1", "joint2", "joint3", "joint4","joint5","joint6",
+  ]  # pinocchio order
+  torque_limits: [800.4, 800.4, 800.4, 
+                  800.4, 800.4, 800.4,
+                  800.4, 800.4, 800.4,
+                  800.4, 800.4, 800.4, 
+                  110., 120., 115., 115., 110.,110] 
+                  # 110., 120., 115., 115., 110.,110,110.]  # 机械臂关节力矩限制
+  torque_factor: 1.0
+  fric_coef: 0.8
+  timestep: 0.002
+  # joint_kp: [0, 0, 0, 
+  #            0, 0, 0, 
+  #            0, 0, 0, 
+  #            0, 0, 0,
+  #            0, 0, 0, 0, 0,0,]
+  # joint_kd: [0, 0, 0, 
+  #            0, 0, 0, 
+  #            0, 0, 0, 
+  #            0, 0, 0,
+  #            0, 0, 0, 0, 0,0,]
+
+  joint_kp: [200, 200, 200,   # FL腿关节
+             200, 200, 200,   # FR腿关节  
+             200, 200, 200,   # RL腿关节
+             200, 200, 200,   # RR腿关节
+             150, 150, 150, 150, 150, 150] 
+            #  150, 150, 150, 150, 150, 150, 150]  # 机械臂关节
+  
+  joint_kd: [5.0, 5.0, 5.0,   # FL腿关节
+             5.0, 5.0, 5.0,   # FR腿关节
+             5.0, 5.0, 5.0,   # RL腿关节
+             5.0, 5.0, 5.0,   # RR腿关节
+              2.0, 2.0, 2.0, 2.0, 2.0, 2.0]
+            #  2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0]  # 机械臂关节
+
+  # task-space / joint-space gains
+  # kp_com_pos: [65., 65., 80.]
+  # kd_com_pos: [15, 15, 15.]
+  # kp_base_pos: [165., 165., 180.]
+  # kd_base_pos: [30., 30., 30.]
+  # kp_base_orn: [300., 300., 100.]
+  # kd_base_orn: [30., 30., 30.]
+  kp_com_pos: [100., 100., 150.]  # 原[65,65,80]
+  kd_com_pos: [20, 20, 25.]      # 原[15,15,15]
+  
+  # 增加基座控制增益
+  kp_base_pos: [200., 200., 250.] # 原[165,165,180]
+  kd_base_pos: [40., 40., 45.]    # 原[30,30,30]
+  
+  kp_base_orn: [400., 400., 150.] # 原[300,300,100]
+  kd_base_orn: [40., 40., 35.]    # 原[30,30,30]
+
+  kp_nom_pos: [
+    50., 50., 50.,  
+    50., 50., 50.,  
+    50., 50., 50.,  
+    50., 50., 50.,
+    20., 20., 20., 20., 20., 20.]
+    # 20., 20., 20., 20., 20., 20., 20.]
+  kd_nom_pos: [
+    5.0, 5.0, 5.0,  
+    5.0, 5.0, 5.0,  
+    5.0, 5.0, 5.0,  
+    5.0, 5.0, 5.0, 
+    2.0, 2.0, 2.0, 2.0, 2.0, 2.0]
+    # 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0]
+  kp_leg_endeff_pos: [150., 150., 200.]
+  kd_leg_endeff_pos: [30., 30., 40.]
+  kp_leg_endeff_orn: [100., 100., 100.]
+  kd_leg_endeff_orn: [10., 10., 10.]
+  kp_arm_endeff_pos: [300., 300., 300.]
+  kd_arm_endeff_pos: [30., 30., 30.]
+  kp_arm_endeff_orn: [100., 100., 100.]
+  kd_arm_endeff_orn: [10., 10., 10.]
+
+  joint_init_pos: [0., 0.75, -1.5, 
+                   0., 0.75, -1.5, 
+                   0., 0.75, -1.5, 
+                   0., 0.75, -1.5,
+                   0.,0.5,-1,0.3,0,0.]
+                  #  0.,0.5,-1,0.3,0,0.,0.]
+  joint_init_vel: [0., 0., 0., 
+                   0., 0., 0., 
+                   0., 0., 0., 
+                   0., 0., 0.,
+                   0., 0., 0., 0.,0.,0.]
+                  #  0., 0., 0., 0., 0.,0.,0.]
+
+
+################################################################################
+# planning configs
+################################################################################
+planner_variables:
+  task_hierarchy: {
+    "dynamic_consistency_task": {"priority": 0, "weight": 1},
+    "contact_motion_task": {"priority": 1, "weight": 1}, 
+    "base_position_task": {"priority": 2, "weight": 1}, 
+    "base_orientation_task": {"priority": 2, "weight": 1},
+    "swing_leg_endeff_position_task": {"priority": 2, "weight": 0.5}, 
+    "swing_arm_endeff_position_task": {"priority": 2, "weight": 0.5},
+    "swing_arm_endeff_orientation_task": {"priority": 2, "weight": 0.5},
+    "minimum_motion_task": {"priority": 3, "weight": 0.2}
+  }
+
+  base_name: "base_link"
+  leg_names: ["FL", "FR", "RL", "RR"]
+  arm_names: ["z1"]
+  leg_endeff_names: ["FL_foot", "FR_foot", "RL_foot", "RR_foot"]
+  arm_endeff_names: ["link06"]
+
+  base_des_pos: [0., 0., 0.55, 0., 0., 0., 1.] # pose
+  base_des_vel: [0., 0., 0., 0., 0., 0.]
+  joint_des_pos: [0., 0.75, -1.5, 
+                   0., 0.75, -1.5, 
+                   0., 0.75, -1.5, 
+                   0., 0.75, -1.5,
+                   0.,0.,0.,0.,0.,0.]
+                  #  0.,0.,0.,0.,0.,0.,0.]
+                  #  0.,0.5,-1,0.3,0,0.,0.]
+  joint_des_vel: [0., 0., 0., 
+                   0., 0., 0., 
+                   0., 0., 0., 
+                   0., 0., 0.,
+                   0., 0., 0., 0.,0.,0.]
+                  #  0., 0., 0., 0., 0.,0.,0.]
+  arm_des_pos: [0.476825, 0., 0.675473, 0., 0., 0., 1.]
+  arm_des_vel: [0., 0., 0., 0., 0., 0.,0]

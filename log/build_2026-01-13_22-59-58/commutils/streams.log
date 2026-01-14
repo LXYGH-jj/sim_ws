@@ -1,0 +1,46 @@
+[0.008s] Invoking command in '/home/liu/sim_ws/build/commutils': CONDA_PROMPT_MODIFIER=(mujoco) /usr/bin/cmake /home/liu/sim_ws/src/commutils -DCMAKE_INSTALL_PREFIX=/home/liu/sim_ws/install/commutils
+[0.039s] -- The C compiler identification is GNU 11.4.0
+[0.072s] -- The CXX compiler identification is GNU 11.4.0
+[0.076s] -- Detecting C compiler ABI info
+[0.114s] -- Detecting C compiler ABI info - done
+[0.118s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.118s] -- Detecting C compile features
+[0.119s] -- Detecting C compile features - done
+[0.121s] -- Detecting CXX compiler ABI info
+[0.167s] -- Detecting CXX compiler ABI info - done
+[0.171s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.172s] -- Detecting CXX compile features
+[0.172s] -- Detecting CXX compile features - done
+[0.265s] -- Found GTest: /usr/lib/x86_64-linux-gnu/cmake/GTest/GTestConfig.cmake (found version "1.11.0")  
+[0.390s] -- Found Python: /usr/bin/python3.10 (found version "3.10.12") found components: Interpreter 
+[0.403s] <string>:1: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+[0.404s] <string>:1: DeprecationWarning: The distutils.sysconfig module is deprecated, use sysconfig instead
+[0.406s] -- Configuring done
+[0.412s] -- Generating done
+[0.415s] -- Build files have been written to: /home/liu/sim_ws/build/commutils
+[0.418s] Invoked command in '/home/liu/sim_ws/build/commutils' returned '0': CONDA_PROMPT_MODIFIER=(mujoco) /usr/bin/cmake /home/liu/sim_ws/src/commutils -DCMAKE_INSTALL_PREFIX=/home/liu/sim_ws/install/commutils
+[0.419s] Invoking command in '/home/liu/sim_ws/build/commutils': CONDA_PROMPT_MODIFIER=(mujoco) /usr/bin/cmake --build /home/liu/sim_ws/build/commutils -- -j12 -l12
+[0.445s] [ 20%] [32mBuilding CXX object CMakeFiles/test_commutils.dir/test/gtest_main.cpp.o[0m
+[0.445s] [ 60%] [32mBuilding CXX object CMakeFiles/test_commutils.dir/test/yaml/test_yaml_eigen.cpp.o[0m
+[0.445s] [ 60%] [32mBuilding CXX object CMakeFiles/test_commutils.dir/test/yaml/test_yaml_tools.cpp.o[0m
+[0.446s] [ 80%] [32mBuilding CXX object CMakeFiles/test_commutils.dir/test/csv/test_csv_writer.cpp.o[0m
+[2.619s] [100%] [32m[1mLinking CXX executable test_commutils[0m
+[2.676s] [100%] Built target test_commutils
+[2.682s] Invoked command in '/home/liu/sim_ws/build/commutils' returned '0': CONDA_PROMPT_MODIFIER=(mujoco) /usr/bin/cmake --build /home/liu/sim_ws/build/commutils -- -j12 -l12
+[2.683s] Invoking command in '/home/liu/sim_ws/build/commutils': CONDA_PROMPT_MODIFIER=(mujoco) /usr/bin/cmake --install /home/liu/sim_ws/build/commutils
+[2.687s] -- Install configuration: ""
+[2.687s] -- Installing: /home/liu/sim_ws/install/commutils/include
+[2.687s] -- Installing: /home/liu/sim_ws/install/commutils/include/commutils
+[2.687s] -- Installing: /home/liu/sim_ws/install/commutils/include/commutils/yaml
+[2.687s] -- Installing: /home/liu/sim_ws/install/commutils/include/commutils/yaml/yaml_eigen.hpp
+[2.687s] -- Installing: /home/liu/sim_ws/install/commutils/include/commutils/yaml/yaml_tools.hpp
+[2.687s] -- Installing: /home/liu/sim_ws/install/commutils/include/commutils/yaml/yaml_cpp_fwd.hpp
+[2.687s] -- Installing: /home/liu/sim_ws/install/commutils/include/commutils/csv
+[2.687s] -- Installing: /home/liu/sim_ws/install/commutils/include/commutils/csv/csv_writer.hpp
+[2.687s] -- Installing: /home/liu/sim_ws/install/commutils/share/commutils/cmake/commutilsConfig.cmake
+[2.687s] -- Installing: /home/liu/sim_ws/install/commutils/share/commutils/cmake/commutilsConfigVersion.cmake
+[2.687s] -- Installing: /home/liu/sim_ws/install/commutils/share/commutils/cmake/commutilsTargets.cmake
+[2.687s] -- Installing: /home/liu/sim_ws/install/commutils/lib/python3.10/site-packages/commutils
+[2.687s] -- Installing: /home/liu/sim_ws/install/commutils/lib/python3.10/site-packages/commutils/yaml_parser.py
+[2.687s] -- Installing: /home/liu/sim_ws/install/commutils/lib/python3.10/site-packages/commutils/__init__.py
+[2.688s] Invoked command in '/home/liu/sim_ws/build/commutils' returned '0': CONDA_PROMPT_MODIFIER=(mujoco) /usr/bin/cmake --install /home/liu/sim_ws/build/commutils

@@ -1,0 +1,58 @@
+Metadata-Version: 2.1
+Name: mjcsim
+Version: 1.0.0
+Summary: MuJoCo wrapper for robots.
+Home-page: https://github.com/ihcr/mjcsim
+Maintainer: Xinyuan Liu
+Maintainer-email: 1214247879@qq.com
+License: BSD-3-clause
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+# mjcsim - MuJoCo Robot Simulator
+A MuJoCo-based robot simulation package.
+-------
+1. Install Mujoco:
+  pip3 install mujoco
+
+### Package Usage
+Replace `<work_folder>` with a specific workspace name, such as rob_ws.
+```
+mkdir -p <work_folder>/src
+cd <work_folder>/src
+git clone https://github.com/LXYGH-jj/sim_ws.git/src/commutils
+git clone https://github.com/LXYGH-jj/sim_ws.git/src/mjcsim
+cd ..
+colcon build
+```
+Once the code has been compiled, you can source .bash file in `install/setup.bash`
+```
+. install/setup.bash
+```
+
+**Loading env in PyBullet**
+
+```
+import mujoco as mjc
+from mjcsim.env import MujocoEnvWithGround
+
+env = MujocoEnvWithGround()
+```
+
+### Running demos
+```
+cd <work_folder>/
+
+python3 ./src/mjcsim/demos/demo_b2z1_standing.py /configs/b2z1_standing.yaml
+```
+
+### License and Copyrights
+
+Copyright (c) 2026, Harbin Institute of Technology.
+BSD 3-Clause License
+
+

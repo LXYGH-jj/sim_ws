@@ -1,0 +1,34 @@
+[0.007s] Invoking command in '/home/liu/sim_ws/build/legarm_wbc': CONDA_PROMPT_MODIFIER=(mujoco) /usr/bin/cmake /home/liu/sim_ws/src/legarm_wbc -DCMAKE_INSTALL_PREFIX=/home/liu/sim_ws/install/legarm_wbc
+[0.036s] -- The C compiler identification is GNU 11.4.0
+[0.069s] -- The CXX compiler identification is GNU 11.4.0
+[0.073s] -- Detecting C compiler ABI info
+[0.111s] -- Detecting C compiler ABI info - done
+[0.115s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.115s] -- Detecting C compile features
+[0.116s] -- Detecting C compile features - done
+[0.118s] -- Detecting CXX compiler ABI info
+[0.164s] -- Detecting CXX compiler ABI info - done
+[0.168s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.169s] -- Detecting CXX compile features
+[0.169s] -- Detecting CXX compile features - done
+[0.290s] -- Found Python: /usr/bin/python3.10 (found version "3.10.12") found components: Interpreter 
+[0.303s] <string>:1: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+[0.304s] <string>:1: DeprecationWarning: The distutils.sysconfig module is deprecated, use sysconfig instead
+[0.306s] -- Configuring done
+[0.307s] -- Generating done
+[0.307s] -- Build files have been written to: /home/liu/sim_ws/build/legarm_wbc
+[0.310s] Invoked command in '/home/liu/sim_ws/build/legarm_wbc' returned '0': CONDA_PROMPT_MODIFIER=(mujoco) /usr/bin/cmake /home/liu/sim_ws/src/legarm_wbc -DCMAKE_INSTALL_PREFIX=/home/liu/sim_ws/install/legarm_wbc
+[0.311s] Invoking command in '/home/liu/sim_ws/build/legarm_wbc': CONDA_PROMPT_MODIFIER=(mujoco) /usr/bin/cmake --build /home/liu/sim_ws/build/legarm_wbc -- -j12 -l12
+[0.332s] Invoked command in '/home/liu/sim_ws/build/legarm_wbc' returned '0': CONDA_PROMPT_MODIFIER=(mujoco) /usr/bin/cmake --build /home/liu/sim_ws/build/legarm_wbc -- -j12 -l12
+[0.338s] Invoking command in '/home/liu/sim_ws/build/legarm_wbc': CONDA_PROMPT_MODIFIER=(mujoco) /usr/bin/cmake --install /home/liu/sim_ws/build/legarm_wbc
+[0.342s] -- Install configuration: ""
+[0.342s] -- Installing: /home/liu/sim_ws/install/legarm_wbc/lib/python3.10/site-packages/legarm_wbc
+[0.342s] -- Installing: /home/liu/sim_ws/install/legarm_wbc/lib/python3.10/site-packages/legarm_wbc/controller_setting.py
+[0.342s] -- Installing: /home/liu/sim_ws/install/legarm_wbc/lib/python3.10/site-packages/legarm_wbc/robot_wrapper.py
+[0.342s] -- Installing: /home/liu/sim_ws/install/legarm_wbc/lib/python3.10/site-packages/legarm_wbc/hqp_data.py
+[0.342s] -- Installing: /home/liu/sim_ws/install/legarm_wbc/lib/python3.10/site-packages/legarm_wbc/__init__.py
+[0.342s] -- Installing: /home/liu/sim_ws/install/legarm_wbc/lib/python3.10/site-packages/legarm_wbc/command.py
+[0.342s] -- Installing: /home/liu/sim_ws/install/legarm_wbc/lib/python3.10/site-packages/legarm_wbc/whole_body_controller.py
+[0.342s] -- Installing: /home/liu/sim_ws/install/legarm_wbc/lib/python3.10/site-packages/legarm_wbc/hqp_solver.py
+[0.342s] -- Installing: /home/liu/sim_ws/install/legarm_wbc/lib/python3.10/site-packages/legarm_wbc/geometry.py
+[0.343s] Invoked command in '/home/liu/sim_ws/build/legarm_wbc' returned '0': CONDA_PROMPT_MODIFIER=(mujoco) /usr/bin/cmake --install /home/liu/sim_ws/build/legarm_wbc

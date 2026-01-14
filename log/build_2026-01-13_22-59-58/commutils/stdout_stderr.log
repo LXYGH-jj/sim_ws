@@ -1,0 +1,40 @@
+-- The C compiler identification is GNU 11.4.0
+-- The CXX compiler identification is GNU 11.4.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found GTest: /usr/lib/x86_64-linux-gnu/cmake/GTest/GTestConfig.cmake (found version "1.11.0")  
+-- Found Python: /usr/bin/python3.10 (found version "3.10.12") found components: Interpreter 
+<string>:1: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+<string>:1: DeprecationWarning: The distutils.sysconfig module is deprecated, use sysconfig instead
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/liu/sim_ws/build/commutils
+[ 20%] [32mBuilding CXX object CMakeFiles/test_commutils.dir/test/gtest_main.cpp.o[0m
+[ 60%] [32mBuilding CXX object CMakeFiles/test_commutils.dir/test/yaml/test_yaml_eigen.cpp.o[0m
+[ 60%] [32mBuilding CXX object CMakeFiles/test_commutils.dir/test/yaml/test_yaml_tools.cpp.o[0m
+[ 80%] [32mBuilding CXX object CMakeFiles/test_commutils.dir/test/csv/test_csv_writer.cpp.o[0m
+[100%] [32m[1mLinking CXX executable test_commutils[0m
+[100%] Built target test_commutils
+-- Install configuration: ""
+-- Installing: /home/liu/sim_ws/install/commutils/include
+-- Installing: /home/liu/sim_ws/install/commutils/include/commutils
+-- Installing: /home/liu/sim_ws/install/commutils/include/commutils/yaml
+-- Installing: /home/liu/sim_ws/install/commutils/include/commutils/yaml/yaml_eigen.hpp
+-- Installing: /home/liu/sim_ws/install/commutils/include/commutils/yaml/yaml_tools.hpp
+-- Installing: /home/liu/sim_ws/install/commutils/include/commutils/yaml/yaml_cpp_fwd.hpp
+-- Installing: /home/liu/sim_ws/install/commutils/include/commutils/csv
+-- Installing: /home/liu/sim_ws/install/commutils/include/commutils/csv/csv_writer.hpp
+-- Installing: /home/liu/sim_ws/install/commutils/share/commutils/cmake/commutilsConfig.cmake
+-- Installing: /home/liu/sim_ws/install/commutils/share/commutils/cmake/commutilsConfigVersion.cmake
+-- Installing: /home/liu/sim_ws/install/commutils/share/commutils/cmake/commutilsTargets.cmake
+-- Installing: /home/liu/sim_ws/install/commutils/lib/python3.10/site-packages/commutils
+-- Installing: /home/liu/sim_ws/install/commutils/lib/python3.10/site-packages/commutils/yaml_parser.py
+-- Installing: /home/liu/sim_ws/install/commutils/lib/python3.10/site-packages/commutils/__init__.py

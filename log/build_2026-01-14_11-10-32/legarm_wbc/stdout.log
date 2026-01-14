@@ -1,0 +1,10 @@
+-- Install configuration: ""
+-- Up-to-date: /home/liu/sim_ws/install/legarm_wbc/lib/python3.10/site-packages/legarm_wbc
+-- Installing: /home/liu/sim_ws/install/legarm_wbc/lib/python3.10/site-packages/legarm_wbc/controller_setting.py
+-- Installing: /home/liu/sim_ws/install/legarm_wbc/lib/python3.10/site-packages/legarm_wbc/robot_wrapper.py
+-- Installing: /home/liu/sim_ws/install/legarm_wbc/lib/python3.10/site-packages/legarm_wbc/hqp_data.py
+-- Up-to-date: /home/liu/sim_ws/install/legarm_wbc/lib/python3.10/site-packages/legarm_wbc/__init__.py
+-- Installing: /home/liu/sim_ws/install/legarm_wbc/lib/python3.10/site-packages/legarm_wbc/command.py
+-- Installing: /home/liu/sim_ws/install/legarm_wbc/lib/python3.10/site-packages/legarm_wbc/whole_body_controller.py
+-- Installing: /home/liu/sim_ws/install/legarm_wbc/lib/python3.10/site-packages/legarm_wbc/hqp_solver.py
+-- Installing: /home/liu/sim_ws/install/legarm_wbc/lib/python3.10/site-packages/legarm_wbc/geometry.py

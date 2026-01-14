@@ -1,0 +1,40 @@
+[0.362s] Invoking command in '/home/liu/sim_ws/src/mjcsim': CONDA_PROMPT_MODIFIER=(mujoco) PYTHONPATH=/home/liu/sim_ws/build/mjcsim/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/liu/sim_ws/install/mjcsim/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/mjcsim build --build-base /home/liu/sim_ws/build/mjcsim/build install --record /home/liu/sim_ws/build/mjcsim/install.log --single-version-externally-managed
+[0.503s] running egg_info
+[0.503s] creating ../../build/mjcsim/mjcsim.egg-info
+[0.503s] writing ../../build/mjcsim/mjcsim.egg-info/PKG-INFO
+[0.503s] writing dependency_links to ../../build/mjcsim/mjcsim.egg-info/dependency_links.txt
+[0.503s] writing entry points to ../../build/mjcsim/mjcsim.egg-info/entry_points.txt
+[0.503s] writing requirements to ../../build/mjcsim/mjcsim.egg-info/requires.txt
+[0.504s] writing top-level names to ../../build/mjcsim/mjcsim.egg-info/top_level.txt
+[0.504s] writing manifest file '../../build/mjcsim/mjcsim.egg-info/SOURCES.txt'
+[0.505s] reading manifest file '../../build/mjcsim/mjcsim.egg-info/SOURCES.txt'
+[0.505s] adding license file 'LICENSE'
+[0.505s] writing manifest file '../../build/mjcsim/mjcsim.egg-info/SOURCES.txt'
+[0.506s] running build
+[0.506s] running build_py
+[0.506s] creating /home/liu/sim_ws/build/mjcsim/build
+[0.506s] creating /home/liu/sim_ws/build/mjcsim/build/lib
+[0.506s] creating /home/liu/sim_ws/build/mjcsim/build/lib/mjcsim
+[0.506s] copying python/mjcsim/env.py -> /home/liu/sim_ws/build/mjcsim/build/lib/mjcsim
+[0.506s] copying python/mjcsim/joint_controller.py -> /home/liu/sim_ws/build/mjcsim/build/lib/mjcsim
+[0.506s] copying python/mjcsim/__init__.py -> /home/liu/sim_ws/build/mjcsim/build/lib/mjcsim
+[0.506s] copying python/mjcsim/sim_robot_interface.py -> /home/liu/sim_ws/build/mjcsim/build/lib/mjcsim
+[0.506s] copying python/mjcsim/sim_robot_setting.py -> /home/liu/sim_ws/build/mjcsim/build/lib/mjcsim
+[0.506s] running install
+[0.506s] running install_lib
+[0.507s] creating /home/liu/sim_ws/install/mjcsim/lib/python3.10/site-packages/mjcsim
+[0.507s] copying /home/liu/sim_ws/build/mjcsim/build/lib/mjcsim/env.py -> /home/liu/sim_ws/install/mjcsim/lib/python3.10/site-packages/mjcsim
+[0.507s] copying /home/liu/sim_ws/build/mjcsim/build/lib/mjcsim/joint_controller.py -> /home/liu/sim_ws/install/mjcsim/lib/python3.10/site-packages/mjcsim
+[0.507s] copying /home/liu/sim_ws/build/mjcsim/build/lib/mjcsim/__init__.py -> /home/liu/sim_ws/install/mjcsim/lib/python3.10/site-packages/mjcsim
+[0.507s] copying /home/liu/sim_ws/build/mjcsim/build/lib/mjcsim/sim_robot_interface.py -> /home/liu/sim_ws/install/mjcsim/lib/python3.10/site-packages/mjcsim
+[0.507s] copying /home/liu/sim_ws/build/mjcsim/build/lib/mjcsim/sim_robot_setting.py -> /home/liu/sim_ws/install/mjcsim/lib/python3.10/site-packages/mjcsim
+[0.507s] byte-compiling /home/liu/sim_ws/install/mjcsim/lib/python3.10/site-packages/mjcsim/env.py to env.cpython-310.pyc
+[0.508s] byte-compiling /home/liu/sim_ws/install/mjcsim/lib/python3.10/site-packages/mjcsim/joint_controller.py to joint_controller.cpython-310.pyc
+[0.508s] byte-compiling /home/liu/sim_ws/install/mjcsim/lib/python3.10/site-packages/mjcsim/__init__.py to __init__.cpython-310.pyc
+[0.508s] byte-compiling /home/liu/sim_ws/install/mjcsim/lib/python3.10/site-packages/mjcsim/sim_robot_interface.py to sim_robot_interface.cpython-310.pyc
+[0.511s] byte-compiling /home/liu/sim_ws/install/mjcsim/lib/python3.10/site-packages/mjcsim/sim_robot_setting.py to sim_robot_setting.cpython-310.pyc
+[0.511s] running install_egg_info
+[0.512s] Copying ../../build/mjcsim/mjcsim.egg-info to /home/liu/sim_ws/install/mjcsim/lib/python3.10/site-packages/mjcsim-1.0.0-py3.10.egg-info
+[0.512s] running install_scripts
+[0.525s] writing list of installed files to '/home/liu/sim_ws/build/mjcsim/install.log'
+[0.540s] Invoked command in '/home/liu/sim_ws/src/mjcsim' returned '0': CONDA_PROMPT_MODIFIER=(mujoco) PYTHONPATH=/home/liu/sim_ws/build/mjcsim/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/liu/sim_ws/install/mjcsim/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/mjcsim build --build-base /home/liu/sim_ws/build/mjcsim/build install --record /home/liu/sim_ws/build/mjcsim/install.log --single-version-externally-managed

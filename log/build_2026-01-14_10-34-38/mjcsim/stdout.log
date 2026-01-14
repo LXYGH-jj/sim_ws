@@ -1,0 +1,18 @@
+running egg_info
+writing ../../build/mjcsim/mjcsim.egg-info/PKG-INFO
+writing dependency_links to ../../build/mjcsim/mjcsim.egg-info/dependency_links.txt
+writing entry points to ../../build/mjcsim/mjcsim.egg-info/entry_points.txt
+writing requirements to ../../build/mjcsim/mjcsim.egg-info/requires.txt
+writing top-level names to ../../build/mjcsim/mjcsim.egg-info/top_level.txt
+reading manifest file '../../build/mjcsim/mjcsim.egg-info/SOURCES.txt'
+adding license file 'LICENSE'
+writing manifest file '../../build/mjcsim/mjcsim.egg-info/SOURCES.txt'
+running build
+running build_py
+running install
+running install_lib
+running install_egg_info
+removing '/home/liu/sim_ws/install/mjcsim/lib/python3.10/site-packages/mjcsim-1.0.0-py3.10.egg-info' (and everything under it)
+Copying ../../build/mjcsim/mjcsim.egg-info to /home/liu/sim_ws/install/mjcsim/lib/python3.10/site-packages/mjcsim-1.0.0-py3.10.egg-info
+running install_scripts
+writing list of installed files to '/home/liu/sim_ws/build/mjcsim/install.log'

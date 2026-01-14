@@ -1,0 +1,4 @@
+Invoking command in '/home/liu/sim_ws/build/legarm_wbc': CONDA_PROMPT_MODIFIER=(mujoco) /usr/bin/cmake --build /home/liu/sim_ws/build/legarm_wbc -- -j12 -l12
+Invoked command in '/home/liu/sim_ws/build/legarm_wbc' returned '0': CONDA_PROMPT_MODIFIER=(mujoco) /usr/bin/cmake --build /home/liu/sim_ws/build/legarm_wbc -- -j12 -l12
+Invoking command in '/home/liu/sim_ws/build/legarm_wbc': CONDA_PROMPT_MODIFIER=(mujoco) /usr/bin/cmake --install /home/liu/sim_ws/build/legarm_wbc
+Invoked command in '/home/liu/sim_ws/build/legarm_wbc' returned '0': CONDA_PROMPT_MODIFIER=(mujoco) /usr/bin/cmake --install /home/liu/sim_ws/build/legarm_wbc
