@@ -7,9 +7,9 @@
 @date 2026-01
 """
 
+import yaml
 import numpy as np
-# from commutils.yaml_parser import load_yaml
-from commutils.yaml_parser import load_yaml
+
 
 class SimRobotSetting:
     def __init__(self):
@@ -25,7 +25,9 @@ class SimRobotSetting:
         self.joint_init_vel = np.zeros(len(self.joint_names))
 
     def initialize(self, rootdir, cfg_file, rob_vars_yaml="sim_robot_variables"):
-        configs = load_yaml(rootdir + cfg_file)
+        with open(rootdir + cfg_file, 'r') as f:
+            configs = yaml.load(f, Loader=yaml.FullLoader)
+
         self.xml_filename = rootdir + configs[rob_vars_yaml]["xml_filename"]
         self.use_fixed_base = configs[rob_vars_yaml]["use_fixed_base"]
         self.base_name = configs[rob_vars_yaml]["base_name"]

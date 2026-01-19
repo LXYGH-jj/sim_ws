@@ -18,8 +18,7 @@ import time
 import numpy as np
 from scipy.spatial.transform import Rotation as R
 
-from commutils.yaml_parser import load_yaml
-from mjcsim.env import MujocoEnvWithGround
+from mjcsim.env import MujocoEnv
 from mjcsim.sim_robot_setting import SimRobotSetting
 from mjcsim.sim_robot_interface import SimRobotInterface
 
@@ -44,20 +43,19 @@ def main(argv):
         raise RuntimeError("Usage: python3 ./demo.py /<config file within root folder>")
     
     with open(rootdir + cfg_file, 'r') as f:
-        cfgs = yaml.load(f, Loader=yaml.FullLoader)
+        configs = yaml.load(f, Loader=yaml.FullLoader)
 
-    print("model_filename: ", cfgs['sim_robot_variables']['xml_filename'])
+    print("model_filename: ", configs['sim_robot_variables']['xml_filename'])
 
 
      # Set constant control.
-    configs = load_yaml(rootdir + cfg_file)
     timestep = configs["timestep"]
     scale = configs["scale"]
     duration = configs["duration"]
     scaled_duration = duration * scale
 
     # ! Create a Mujoco simulation environment before any robots !
-    env = MujocoEnvWithGround(dt=timestep)
+    env = MujocoEnv(dt=timestep)
 
     # Create a robot instance for Mujoco simulation.  
     sim_setting = SimRobotSetting()

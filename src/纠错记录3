@@ -1,0 +1,46 @@
+[PD for application] 动作应用: 90 个元素
+[WBC] 动作计算成功: 90 个元素
+[WBC] 计算出的关节力矩:
+  [1] FL_hip_joint: 80.9662 Nm
+  [2] FL_thigh_joint: 682.9065 Nm
+  [3] FL_calf_joint: -191.5713 Nm
+  
+  [4] FR_hip_joint: -212.7001 Nm
+  [5] FR_thigh_joint: 120.7387 Nm
+  [6] FR_calf_joint: -64.9648 Nm
+  
+  [7] RL_hip_joint: 15.5712 Nm
+  [8] RL_thigh_joint: -0.2053 Nm
+  [9] RL_calf_joint: 0.8521 Nm
+  
+  [10] RR_hip_joint: -578.0971 Nm
+  [11] RR_thigh_joint: -544.3044 Nm
+  [12] RR_calf_joint: -531.6221 Nm
+  
+  [13] joint1: -110.0000 Nm
+  [14] joint2: 39.3483 Nm
+  [15] joint3: 96.3796 Nm
+  [16] joint4: 19.6947 Nm
+  [17] joint5: -6.5607 Nm
+  [18] joint6: -0.0128 Nm
+[PD for application] 动作应用: 90 个元素
+[WBC] 动作计算成功: 90 个元素
+[WBC] 计算出的关节力矩:
+  [1] FL_hip_joint: 80.9674 Nm
+  [2] FL_thigh_joint: 682.9050 Nm
+  [3] FL_calf_joint: -191.5728 Nm
+  [4] FR_hip_joint: -212.7027 Nm
+  [5] FR_thigh_joint: 120.7397 Nm
+  [6] FR_calf_joint: -64.9656 Nm
+  [7] RL_hip_joint: 15.5711 Nm
+  [8] RL_thigh_joint: -0.2053 Nm
+  [9] RL_calf_joint: 0.8521 Nm
+  [10] RR_hip_joint: -578.0954 Nm
+  [11] RR_thigh_joint: -544.3022 Nm
+  [12] RR_calf_joint: -531.6208 Nm
+  [13] joint1: -110.0000 Nm
+  [14] joint2: 39.3484 Nm
+  [15] joint3: 96.3796 Nm
+  [16] joint4: 19.6947 Nm
+  [17] joint5: -6.5607 Nm
+  [18] joint6: -0.0128 Nm

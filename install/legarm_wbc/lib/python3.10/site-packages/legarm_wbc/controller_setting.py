@@ -7,8 +7,9 @@
 @date 2026-01
 """
 
+import yaml
 import numpy as np
-from commutils.yaml_parser import load_yaml
+
 
 class ControllerSetting:
 
@@ -49,7 +50,8 @@ class ControllerSetting:
         self.joint_init_vel = np.zeros(len(self.joint_names))
 
     def initialize(self, rootdir, cfg_file, ctrl_vars_yaml="controller_variables"):
-        configs = load_yaml(rootdir + cfg_file)
+        with open(rootdir + cfg_file, 'r') as f:
+            configs = yaml.load(f, Loader=yaml.FullLoader)
         self.urdf_filename = rootdir + configs[ctrl_vars_yaml]["urdf_filename"]
         print("ControllerSetting: urdf_filename:", self.urdf_filename)
         self.base_name = configs[ctrl_vars_yaml]["base_name"]

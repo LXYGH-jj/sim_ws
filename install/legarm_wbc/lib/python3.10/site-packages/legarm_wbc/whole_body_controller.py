@@ -1,10 +1,10 @@
 """
 @file whole_body_controller.py
 @package legarm_wbc
-@author Xinyuan Liu (liuxinyuan872@gmail.com)
+@author Jun LI (junlileeds@gmail.com)
 @license License BSD-3-Clause
-@Copyright (c) 2026, Harbin Institute of Technology.
-@date 2026-01
+@Copyright (c) 2021, University of Leeds and Harbin Institute of Technology.
+@date 2022-04-25
 """
 
 import numpy as np

@@ -23,9 +23,9 @@ Once the code has been compiled, you can source .bash file in `install/setup.bas
 
 ```
 import mujoco as mjc
-from mjcsim.env import MujocoEnvWithGround
+from mjcsim.env import MujocoEnv
 
-env = MujocoEnvWithGround()
+env = MujocoEnv()
 ```
 
 ### Running demos
@@ -34,6 +34,7 @@ cd <work_folder>/
 source ~/miniconda3/bin/activate
 conda activate mujoco
 python3 ./src/legarm_wbc/demos/demo_b2z1_standing.py /configs/b2z1_standing.yaml
+python3 ./src/legarm_wbc/demos/demo_b2z1_switch.py /configs/b2z1_standing.yaml
 ```
 
 ### License and Copyrights

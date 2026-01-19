@@ -6,14 +6,13 @@
 @Copyright (c) 2026, Harbin Institute of Technology.
 @date 2026-01
 """
-from pathlib import Path
+
 import time
-import typing
+from pathlib import Path
 
 import mujoco
-from mujoco import viewer as mujoco_viewer
-import numpy as np
-import glfw
+from mujoco import viewer as mv
+
 
 class MujocoEnv:
     """
@@ -49,13 +48,13 @@ class MujocoEnv:
 
     def _create_viewer(self):
         """Create a MuJoCo viewer instance without blocking execution."""
-        if mujoco_viewer is not None:
+        if mv is not None:
             max_attempts = 5
             attempt = 0
             while attempt < max_attempts:
                 try:
                     # Create a non-blocking viewer that does not enter the main loop
-                    self._viewer = mujoco_viewer.launch_passive(self.model, self.data)
+                    self._viewer = mv.launch_passive(self.model, self.data)
                     print("Viewer created successfully")
                     return self._viewer
                 except Exception as e:
@@ -118,8 +117,6 @@ class MujocoEnv:
                     "implement robot.attach_to_sim(sim) to perform a merge."
                 )
 
-        
-
     def step(self, sleep: bool = False):
         """Advance the simulation by one environment step."""
         if sleep:
@@ -173,12 +170,3 @@ class MujocoEnv:
     def get_time_since_start(self):
         """Return simulation time in seconds since environment creation."""
         return self.step_counter * self.dt
-
-
-class MujocoEnvWithGround(MujocoEnv):
-    """This class provides a shortcut to construct a MuJoCo simulation 
-       environment with a flat ground.
-    """
-    def __init__(self, dt=0.002):
-        super().__init__(dt)
-        print("Environment creation successful")

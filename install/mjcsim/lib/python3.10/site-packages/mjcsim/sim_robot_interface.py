@@ -9,10 +9,11 @@
 
 import numpy as np
 import mujoco as mjc
-from pathlib import Path
+
 import xml.etree.ElementTree as ET
 
 from mjcsim.joint_controller import JointController
+
 
 class SimRobotInterface:
     def __init__(self, rob_setting):
@@ -87,8 +88,7 @@ class SimRobotInterface:
         self.joint_torque_limits = self._get_torque_limits_from_xml()
         self.joint_controller = JointController(self.joint_names, self.joint_torque_limits)
     
-
-    def compute_numerical_quantities(self, dt=0.001):
+    def compute_numerical_quantities(self, dt=0.002):
         """Compute numerical robot quantities from simulation results."""
         
         # Dynamically obtain the root joint, rather than hard-coding it
@@ -302,7 +302,6 @@ class SimRobotInterface:
             joint_vel.append(self.joint_states[idx][1])
         return (np.array(joint_vel))
 
-    
     def apply_joint_actions(self, actions):
         """Apply the desired action to the joints.
 

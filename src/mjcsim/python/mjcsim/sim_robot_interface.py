@@ -9,10 +9,11 @@
 
 import numpy as np
 import mujoco as mjc
-from pathlib import Path
+
 import xml.etree.ElementTree as ET
 
 from mjcsim.joint_controller import JointController
+
 
 class SimRobotInterface:
     def __init__(self, rob_setting):
@@ -61,7 +62,8 @@ class SimRobotInterface:
 
         self.rng = np.random.default_rng()
 
-        self.init_orn_inv = np.array([1.0, 0.0, 0.0, 0.0])
+        # self.init_orn_inv = np.array([1.0, 0.0, 0.0, 0.0])
+        self.init_orn_inv = np.array([0.0, 0.0, 0.0, 1.0]) 
         self.joint_qpos_indices = []
         self.joint_dof_indices = []
         self.joint_states = []
@@ -69,7 +71,8 @@ class SimRobotInterface:
         # IMU
         self.imu_lin_acc = np.zeros(3)
         self.imu_ang_vel = np.zeros(3)
-        self.base_orn = np.array([1.0, 0.0, 0.0, 0.0])
+        # self.base_orn = np.array([1.0, 0.0, 0.0, 0.0])
+        self.base_orn = np.array([0.0, 0.0, 0.0, 1.0])
         self.base_pos = np.array(self.base_init_pos[:3]) if len(self.base_init_pos) >= 3 else np.zeros(3)
         self.base_lin_vel = np.zeros(3)
         self.base_ang_vel = np.zeros(3)
@@ -87,8 +90,7 @@ class SimRobotInterface:
         self.joint_torque_limits = self._get_torque_limits_from_xml()
         self.joint_controller = JointController(self.joint_names, self.joint_torque_limits)
     
-
-    def compute_numerical_quantities(self, dt=0.001):
+    def compute_numerical_quantities(self, dt=0.002):
         """Compute numerical robot quantities from simulation results."""
         
         # Dynamically obtain the root joint, rather than hard-coding it
@@ -98,7 +100,11 @@ class SimRobotInterface:
             root_dof_start = self.model.jnt_dofadr[root_jnt_id]
             # Obtain basic position and direction
             self.base_pos = self.data.qpos[root_dof_start:root_dof_start+3].copy()
-            base_orn_w = self.data.qpos[root_dof_start+3:root_dof_start+7].copy()  
+
+            # base_orn_w = self.data.qpos[root_dof_start+3:root_dof_start+7].copy()  
+            base_orn_w_mjc = self.data.qpos[root_dof_start+3:root_dof_start+7].copy()
+            base_orn_w = self._mjc_quat_to_xyzw(base_orn_w_mjc)
+
             # Obtain basic linear velocity and angular velocity
             root_vel_start = self.model.jnt_dofadr[root_dof_start]
             base_lin_vel_w = self.data.qvel[root_vel_start:root_vel_start+3].copy()
@@ -106,7 +112,8 @@ class SimRobotInterface:
         else:
             # If there is no root joint (fixed base), use the default value
             self.base_pos = np.array(self.base_init_pos)
-            base_orn_w = np.array([1.0, 0.0, 0.0, 0.0])  # unit quaternion
+            # base_orn_w = np.array([1.0, 0.0, 0.0, 0.0])  # unit quaternion
+            base_orn_w = np.array([0.0, 0.0, 0.0, 1.0])
             base_lin_vel_w = np.zeros(3)
             base_ang_vel_w = np.zeros(3)
 
@@ -115,10 +122,12 @@ class SimRobotInterface:
         joint_vel = self.data.qvel[self.joint_dof_indices].copy()
         # Create a compatible joint_states structure
         self.joint_states = [(pos, vel, np.zeros(6), 0.0) for pos, vel in zip(joint_pos, joint_vel)]
+
         # Calculate the pose relative to the initial direction
-        init_orn_inv = np.array([self.init_orn_inv[0], self.init_orn_inv[1], 
-                                self.init_orn_inv[2], -self.init_orn_inv[3]])  # quaternion conjugate
-        self.base_orn = self._multiply_quaternions(base_orn_w, init_orn_inv)
+        self.base_orn = self._multiply_quaternions(base_orn_w, self.init_orn_inv)
+        # init_orn_inv = np.array([self.init_orn_inv[0], self.init_orn_inv[1], 
+        #                         self.init_orn_inv[2], -self.init_orn_inv[3]])  # quaternion conjugate
+        # self.base_orn = self._multiply_quaternions(base_orn_w, init_orn_inv)
 
         # Transform velocity to base frame
         self.base_lin_vel = self._transform_velocity_to_base_frame(
@@ -179,10 +188,25 @@ class SimRobotInterface:
 
     def _multiply_quaternions(self, q1, q2):
         """quaternion multiplication"""
-        result = np.zeros(4)
-        mjc.mju_mulQuat(result, q1, q2)
-        return result
+        # result = np.zeros(4)
+        # mjc.mju_mulQuat(result, q1, q2)
+        # return result
+        q1_wxyz = self._xyzw_to_mjc_quat(q1)
+        q2_wxyz = self._xyzw_to_mjc_quat(q2)
+        
+        result_wxyz = np.zeros(4)
+        mjc.mju_mulQuat(result_wxyz, q1_wxyz, q2_wxyz)
+        
+        return self._mjc_quat_to_xyzw(result_wxyz)
     
+    def _xyzw_to_mjc_quat(self, quat_xyzw):
+        """Convert from [x, y, z, w] to MuJoCo's [w, x, y, z] order"""
+        return np.array([quat_xyzw[3], quat_xyzw[0], quat_xyzw[1], quat_xyzw[2]])
+    
+    def _mjc_quat_to_xyzw(self, quat_wxyz):
+        """Convert from MuJoCo's [w, x, y, z] to [x, y, z, w] order"""
+        return np.array([quat_wxyz[1], quat_wxyz[2], quat_wxyz[3], quat_wxyz[0]])
+
     def _transform_velocity_to_base_frame(self, velocity_world, orientation):
         """Transform velocity from world frame to base frame
         Args:
@@ -191,8 +215,14 @@ class SimRobotInterface:
         Returns:
             velocity vector in base frame
         """
+
+        orientation_wxyz = self._xyzw_to_mjc_quat(orientation)
+
         # Construct a rotation matrix from quaternion
-        rotation_matrix = self._quat_to_rot(orientation)
+        # rotation_matrix = self._quat_to_rot(orientation)
+        rotation_matrix = np.zeros(9)
+        mjc.mju_quat2Mat(rotation_matrix, orientation_wxyz)
+        rotation_matrix = rotation_matrix.reshape(3, 3)
         
         # Velocity conversion: R^T * v_world (or R^-1 * v_world, for the rotation matrix R^T = R^-1)
         velocity_base = rotation_matrix.T @ velocity_world
@@ -201,16 +231,23 @@ class SimRobotInterface:
 
     def _quat_to_rot(self, quat):
         """Convert quaternion to rotation matrix"""
+        # rotation_matrix = np.zeros(9)
+        # # Use the function provided by MuJoCo to convert quaternion into rotation matrix
+        # mjc.mju_quat2Mat(rotation_matrix, quat)
+        # return rotation_matrix.reshape(3, 3)
+        quat_wxyz = self._xyzw_to_mjc_quat(quat)
+        
         rotation_matrix = np.zeros(9)
-        # Use the function provided by MuJoCo to convert quaternion into rotation matrix
-        mjc.mju_quat2Mat(rotation_matrix, quat)
+        mjc.mju_quat2Mat(rotation_matrix, quat_wxyz)
         return rotation_matrix.reshape(3, 3)
 
     def _rot_to_quat(self, rot_matrix):
         """Convert rotation matrix to quaternion"""
-        quat = np.zeros(4)
-        mjc.mju_mat2Quat(quat, rot_matrix.flatten())
-        return quat
+        # quat = np.zeros(4)
+        quat_wxyz = np.zeros(4)
+        mjc.mju_mat2Quat(quat_wxyz, rot_matrix.flatten())
+        # return quat
+        return self._mjc_quat_to_xyzw(quat_wxyz)
             
     def _get_torque_limits_from_xml(self):
         """Read joint torque limits from the XML file
@@ -302,7 +339,6 @@ class SimRobotInterface:
             joint_vel.append(self.joint_states[idx][1])
         return (np.array(joint_vel))
 
-    
     def apply_joint_actions(self, actions):
         """Apply the desired action to the joints.
 
@@ -351,6 +387,44 @@ class SimRobotInterface:
         
         return np.array(contact_forces)
     
+    # -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    # WBC
+    def get_base_position(self):
+        """Get the robot's base position.
+
+        Returns:
+            base_pos (ndarray): base position.
+        """
+        return np.array(self.base_pos)
+    
+    def get_base_quaternion(self):
+        """Get the robot's base orientation in quaternion.
+
+        Returns:
+            base_orn (ndarray): quaternion of base orientation [x,y,z,w].
+        """
+        return np.array(self.base_orn)
+        # if len(self.base_orn) == 4:
+        #     return np.array([self.base_orn[1], self.base_orn[2], self.base_orn[3], self.base_orn[0]])
+        # else:
+        #     return np.array([0., 0., 0., 1.]) 
+    
+    def get_base_linear_velocity(self):
+        """Get the robot's base linear velocity in base frame.
+
+        Returns:
+            base_lin_vel (ndarray): base linear velocity.
+        """
+        return np.array(self.base_lin_vel)
+    
+    def get_base_angular_velocity(self):
+        """Get the robot's base angular velocity in base frame.
+
+        Returns:
+            base_ang_vel (ndarray): base angular velocity.
+        """
+        return np.array(self.base_ang_vel)
+        
     # -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     def get_raw_base_imu_angular_velocity(self):
         """Get polluted base IMU gyroscope angular velocity. Assume that 
@@ -450,13 +524,7 @@ class SimRobotInterface:
         
         return np.array(contact_forces) + self.rng.standard_normal(self.ne)
     
-    def get_base_position(self):
-        """Get the robot's base position.
-
-        Returns:
-            base_pos (ndarray): base position.
-        """
-        return np.array(self.base_pos)
+    
 
     def get_base_rotation(self):
         """Get the robot's base orientation in rotation matrix.
@@ -464,15 +532,11 @@ class SimRobotInterface:
         Returns:
             base_orn (ndarray): rotation matrix of base orientation.
         """
-        return self._quat_to_rot(self.base_orn)
+        # return self._quat_to_rot(self.base_orn)
+        rot_matrix = self._quat_to_rot(self.base_orn)
+        return rot_matrix.flatten()
 
-    def get_base_quaternion(self):
-        """Get the robot's base orientation in quaternion.
-
-        Returns:
-            base_orn (ndarray): quaternion of base orientation [x,y,z,w].
-        """
-        return np.array(self.base_orn)
+    
 
     def get_base_euler_rpy(self):
         """Get the robot's base orientation in euler angles.
@@ -483,25 +547,15 @@ class SimRobotInterface:
         # Convert quaternion to euler angles using MuJoCo function
         euler = np.zeros(3)
         # MuJoCo uses w, x, y, z order for quaternions
-        quat = self.base_orn
-        mjc.mju_quat2Euler(euler, quat)
+        # quat = self.base_orn
+        # mjc.mju_quat2Euler(euler, quat)
+        quat_wxyz = self._xyzw_to_mjc_quat(self.base_orn)
+        mjc.mju_quat2Euler(euler, quat_wxyz)
         return euler
 
-    def get_base_linear_velocity(self):
-        """Get the robot's base linear velocity in base frame.
+    
 
-        Returns:
-            base_lin_vel (ndarray): base linear velocity.
-        """
-        return np.array(self.base_lin_vel)
-
-    def get_base_angular_velocity(self):
-        """Get the robot's base angular velocity in base frame.
-
-        Returns:
-            base_ang_vel (ndarray): base angular velocity.
-        """
-        return np.array(self.base_ang_vel)
+    
 
     def get_link_pose(self, name):
         """Get the link frame pose in world frame.
@@ -509,6 +563,17 @@ class SimRobotInterface:
         Returns:
             frame_pose (ndarray): frame pose.
         """
+        # try:
+        #     body_id = mjc.mj_name2id(self.model, mjc.mjtObj.mjOBJ_BODY, name)
+        #     # Get position from body's center of mass
+        #     pos = self.data.xpos[body_id].copy()
+        #     # Get orientation as quaternion from rotation matrix
+        #     rot_mat = self.data.xmat[body_id].copy().reshape(3,3)
+        #     orn_quat = self._rot_to_quat(rot_mat)
+        #     frame_pose = np.concatenate((pos, orn_quat))
+        #     return frame_pose
+        # except:
+        #     return np.zeros(7)
         try:
             body_id = mjc.mj_name2id(self.model, mjc.mjtObj.mjOBJ_BODY, name)
             # Get position from body's center of mass
@@ -516,6 +581,9 @@ class SimRobotInterface:
             # Get orientation as quaternion from rotation matrix
             rot_mat = self.data.xmat[body_id].copy().reshape(3,3)
             orn_quat = self._rot_to_quat(rot_mat)
+            
+            # orn_reordered = [orn_quat[1], orn_quat[2], orn_quat[3], orn_quat[0]]
+            # frame_pose = np.concatenate((pos, orn_reordered))
             frame_pose = np.concatenate((pos, orn_quat))
             return frame_pose
         except:

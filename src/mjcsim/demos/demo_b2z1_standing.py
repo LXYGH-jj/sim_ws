@@ -17,8 +17,7 @@ import inspect
 import time
 import numpy as np
 
-from commutils.yaml_parser import load_yaml
-from mjcsim.env import MujocoEnvWithGround
+from mjcsim.env import MujocoEnv
 from mjcsim.sim_robot_setting import SimRobotSetting
 from mjcsim.sim_robot_interface import SimRobotInterface
 
@@ -38,12 +37,12 @@ def main(argv):
         raise RuntimeError("Usage: python3 ./demo.py /<config file within root folder>")
     
     with open(rootdir + cfg_file, 'r') as f:
-        cfgs = yaml.load(f, Loader=yaml.FullLoader)
+        configs = yaml.load(f, Loader=yaml.FullLoader)
 
-    print("model_filename: ", cfgs['sim_robot_variables']['xml_filename'])
+    print("model_filename: ", configs['sim_robot_variables']['xml_filename'])
 
     # ! Create a Mujoco simulation environment before any robots !
-    env = MujocoEnvWithGround(dt=TIME_STEP)
+    env = MujocoEnv(dt=TIME_STEP)
 
     # Create a robot instance for Mujoco simulation.  
     sim_setting = SimRobotSetting()
@@ -54,7 +53,6 @@ def main(argv):
     env.add_robot(sim_robot)
     
     # Set constant control.
-    configs = load_yaml(rootdir + cfg_file)
     actions = []
     joint_des_pos = np.array(configs["control_variables"]["joint_des_pos"])
     joint_des_vel = np.array(configs["control_variables"]["joint_des_vel"])

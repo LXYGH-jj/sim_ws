@@ -1,0 +1,20 @@
+[0.495s] Invoking command in '/home/liu/sim_ws/src/mjcsim': CONDA_PROMPT_MODIFIER=(mujoco) PYTHONPATH=/home/liu/sim_ws/build/mjcsim/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/liu/sim_ws/install/mjcsim/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/mjcsim build --build-base /home/liu/sim_ws/build/mjcsim/build install --record /home/liu/sim_ws/build/mjcsim/install.log --single-version-externally-managed
+[0.626s] running egg_info
+[0.626s] writing ../../build/mjcsim/mjcsim.egg-info/PKG-INFO
+[0.626s] writing dependency_links to ../../build/mjcsim/mjcsim.egg-info/dependency_links.txt
+[0.626s] writing entry points to ../../build/mjcsim/mjcsim.egg-info/entry_points.txt
+[0.626s] writing requirements to ../../build/mjcsim/mjcsim.egg-info/requires.txt
+[0.626s] writing top-level names to ../../build/mjcsim/mjcsim.egg-info/top_level.txt
+[0.627s] reading manifest file '../../build/mjcsim/mjcsim.egg-info/SOURCES.txt'
+[0.627s] adding license file 'LICENSE'
+[0.628s] writing manifest file '../../build/mjcsim/mjcsim.egg-info/SOURCES.txt'
+[0.628s] running build
+[0.628s] running build_py
+[0.628s] running install
+[0.628s] running install_lib
+[0.629s] running install_egg_info
+[0.630s] removing '/home/liu/sim_ws/install/mjcsim/lib/python3.10/site-packages/mjcsim-1.0.0-py3.10.egg-info' (and everything under it)
+[0.630s] Copying ../../build/mjcsim/mjcsim.egg-info to /home/liu/sim_ws/install/mjcsim/lib/python3.10/site-packages/mjcsim-1.0.0-py3.10.egg-info
+[0.630s] running install_scripts
+[0.643s] writing list of installed files to '/home/liu/sim_ws/build/mjcsim/install.log'
+[0.660s] Invoked command in '/home/liu/sim_ws/src/mjcsim' returned '0': CONDA_PROMPT_MODIFIER=(mujoco) PYTHONPATH=/home/liu/sim_ws/build/mjcsim/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/liu/sim_ws/install/mjcsim/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/mjcsim build --build-base /home/liu/sim_ws/build/mjcsim/build install --record /home/liu/sim_ws/build/mjcsim/install.log --single-version-externally-managed
