@@ -40,12 +40,12 @@ class PDController:
                        200, 200, 200, 
                        200, 200, 200, 
                        200, 200, 200,
-                       15., 15., 15., 15., 15.,15.]
+                      ]
         self.joint_kd = [10, 10, 10, 
                        10, 10, 10, 
                        10, 10, 10, 
                        10, 10, 10,
-                       10, 10, 10, 10, 10, 10]
+                       ]
         self.joint_names = joint_names
         self.desired_positions = None
         
@@ -94,7 +94,7 @@ def main(argv):
     duration = configs["duration"]
     scaled_duration = duration * scale
     
-    pd_control_duration = 3.0  
+    pd_control_duration = 5.0  
     use_pd_control = True      
     
     env = MujocoEnv(dt=timestep)
@@ -173,15 +173,15 @@ def main(argv):
 
         
         sim_base_pose = np.concatenate((
-            sim_robot.get_base_position(), 
+            sim_robot.get_base_position(),
             sim_robot.get_base_quaternion()
         ))
-
         base_pos = sim_robot.get_base_position()
         base_quat = sim_robot.get_base_quaternion()
 
         print(f"Base position: {base_pos}")
         print(f"Base quaternion: {base_quat}")
+        
         sim_base_velocity = np.concatenate((
             sim_robot.get_base_linear_velocity(),
             sim_robot.get_base_angular_velocity()
@@ -194,6 +194,13 @@ def main(argv):
             sim_base_pose, sim_base_velocity, 
             sim_joint_positions, sim_joint_velocities
         )
+        # # 打印数据以便调试
+        # print("-----------------------------------------------------")
+        # print("Sim base pose: \n", sim_base_pose)
+        # print("Sim base velocity: \n", sim_base_velocity)
+        # print("Sim joint positions: \n", sim_joint_positions)
+        # print("Sim joint velocities: \n", sim_joint_velocities)
+        # print("-----------------------------------------------------")
 
         
         if use_pd_control and (current_time - start_time >= pd_control_duration):
@@ -208,13 +215,13 @@ def main(argv):
                 
             actions = pd_controller.compute_control(sim_joint_positions, sim_joint_velocities)
             print(f"[PD] 动作计算成功: {len(actions)} 个元素")
-            for i, jn in enumerate(pd_controller.joint_names):
-                action_idx = i * 5
-                print(f"[PD] 关节 {jn}: 位置={actions[action_idx]:.4f}, "
-                      f"Kp={actions[action_idx+1]:.2f}, "
-                      f"速度={actions[action_idx+2]:.4f}, "
-                      f"Kd={actions[action_idx+3]:.2f}, "
-                      f"力矩={actions[action_idx+4]:.4f}")
+            # for i, jn in enumerate(pd_controller.joint_names):
+            #     action_idx = i * 5
+            #     print(f"[PD] 关节 {jn}: 位置={actions[action_idx]:.4f}, "
+            #           f"Kp={actions[action_idx+1]:.2f}, "
+            #           f"速度={actions[action_idx+2]:.4f}, "
+            #           f"Kd={actions[action_idx+3]:.2f}, "
+            #           f"力矩={actions[action_idx+4]:.4f}")
             
         else:
             try:
@@ -224,9 +231,9 @@ def main(argv):
                 # 获取关节名称
                 joint_names = controller.joint_names
                 
-                # # 打印所有action数据的详细信息
-                # print(f"[WBC] 详细动作数据:")
-                # print(f"  总共 {len(joint_names)} 个关节，每个关节5个参数")
+                # 打印所有action数据的详细信息
+                print(f"[WBC] 详细动作数据:")
+                print(f"  总共 {len(joint_names)} 个关节，每个关节5个参数")
                 
                 # for i, joint_name in enumerate(joint_names):
                 #     action_start_idx = i * 5

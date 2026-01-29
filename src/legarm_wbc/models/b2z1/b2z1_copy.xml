@@ -18,13 +18,13 @@
     <mesh name="RR_hip" file="RR_hip.stl"/>
     <mesh name="RR_thigh" file="RR_thigh.stl"/>
     <mesh name="RR_calf" file="RR_calf.stl"/>
-    <mesh name="z1_Link00" file="z1_Link00.stl"/>
+    <!-- <mesh name="z1_Link00" file="z1_Link00.stl"/>
     <mesh name="z1_Link01" file="z1_Link01.stl"/>
     <mesh name="z1_Link02" file="z1_Link02.stl"/>
     <mesh name="z1_Link03" file="z1_Link03.stl"/>
     <mesh name="z1_Link04" file="z1_Link04.stl"/>
     <mesh name="z1_Link05" file="z1_Link05.stl"/>
-    <mesh name="z1_Link06" file="z1_Link06.stl"/>
+    <mesh name="z1_Link06" file="z1_Link06.stl"/> -->
   </asset>
 
   <worldbody>
@@ -46,7 +46,7 @@
       <geom size="0.05 0.01" pos="-0.20205 -0.072 0" quat="0.707107 0 0.707107 0" type="cylinder"/>
       <geom size="0.1 0.1 0.025" pos="0.15 0 0.1" type="box" contype="0" conaffinity="0" group="1" density="0" rgba="0.85 0.85 0.85 1"/>
       <geom size="0.1 0.1 0.025" pos="0.15 0 0.1" type="box" rgba="0.85 0.85 0.85 1"/>
-      <geom pos="0.17 0 0.125" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.85 0.85 0.85 1" mesh="z1_Link00"/>
+      <!-- <geom pos="0.17 0 0.125" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.85 0.85 0.85 1" mesh="z1_Link00"/> -->
       <geom size="0.0325 0.0255" pos="0.17 0 0.1505" type="cylinder" rgba="0.85 0.85 0.85 1"/>
       <body name="FL_hip" pos="0.3285 0.072 0">
         <inertial pos="-0.00274412 -0.00822657 0" quat="0.507287 0.506932 0.492619 0.492957" mass="2.9464" diaginertia="0.00505471 0.00402681 0.00348237"/>

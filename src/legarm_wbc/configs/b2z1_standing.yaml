@@ -26,7 +26,7 @@ sim_robot_variables:
   limb_names: ["FL", "FR", "RL", "RR", "z1"]
   limb_endeff_names: ["FL_foot", "FR_foot", "RL_foot", "RR_foot", "link06"]
 
-  base_init_pos: [0., 0., 0.45, 0., 0., 0., 1.] # pose
+  base_init_pos: [0., 0., 0.5, 0., 0., 0., 1.] # pose
   base_init_vel: [0., 0., 0., 0., 0., 0.]
   joint_init_pos: [0., 0.75, -1.5, 
                    0., 0.75, -1.5, 
@@ -64,26 +64,15 @@ controller_variables:
     "RR_hip_joint", "RR_thigh_joint", "RR_calf_joint", 
     "joint1", "joint2", "joint3", "joint4","joint5","joint6",
   ]  # pinocchio order
-  torque_limits: [800.4, 800.4, 800.4, 
-                  800.4, 800.4, 800.4,
-                  800.4, 800.4, 800.4,
-                  800.4, 800.4, 800.4, 
-                  100., 100., 100., 110., 100.,100] 
+  torque_limits: [200, 200, 320, 
+                  200, 200, 320, 
+                  200, 200, 320, 
+                  200, 200, 320,
+                  100, 100, 100, 100, 100, 100,] 
                   # 110., 120., 115., 115., 110.,110,110.]  # 机械臂关节力矩限制
   torque_factor: 1.0
   fric_coef: 0.8
   timestep: 0.002
-  # joint_kp: [0, 0, 0, 
-  #            0, 0, 0, 
-  #            0, 0, 0, 
-  #            0, 0, 0,
-  #            0, 0, 0, 0, 0,0,]
-  # joint_kd: [0, 0, 0, 
-  #            0, 0, 0, 
-  #            0, 0, 0, 
-  #            0, 0, 0,
-  #            0, 0, 0, 0, 0,0,]
-
   joint_kp: [0, 0, 0,   # FL腿关节
              0, 0, 0,   # FR腿关节  
              0, 0, 0,   # RL腿关节
@@ -98,58 +87,7 @@ controller_variables:
              0, 0, 0, 0, 0, 0] 
             #  2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0]  # 机械臂关节
 
-  # task-space / joint-space gains
-  # kp_com_pos: [65., 65., 80.]
-  # kd_com_pos: [15, 15, 15.]
-  # kp_base_pos: [165., 165., 180.]
-  # kd_base_pos: [30., 30., 30.]
-  # kp_base_orn: [300., 300., 100.]
-  # kd_base_orn: [30., 30., 30.]
-  # kp_com_pos: [50., 50., 80.]  # 原[65,65,80]
-  # kd_com_pos: [10, 10, 15.]      # 原[15,15,15]
   
-  # # 增加基座控制增益
-  # kp_base_pos: [100., 100., 150.] # 原[165,165,180]
-  # kd_base_pos: [10., 10., 15.]    # 原[30,30,30]
-  
-  # kp_base_orn: [200., 200., 50.] # 原[300,300,100]
-  # kd_base_orn: [20., 20., 15.]    # 原[30,30,30]
-
-  # kp_nom_pos: [
-  #   50., 50., 50.,  
-  #   50., 50., 50.,  
-  #   50., 50., 50.,  
-  #   50., 50., 50.,
-  #   20., 20., 20., 20., 20., 20.]
-  #   # 20., 20., 20., 20., 20., 20., 20.]
-  # kd_nom_pos: [
-  #   1.0, 1.0, 1.0,  
-  #   1.0, 1.0, 1.0,  
-  #   1.0, 1.0, 1.0,  
-  #   1.0, 1.0, 1.0, 
-  #   .50, .50, .50, .50, .50, .50]
-  #   # 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0]
-  # kp_leg_endeff_pos: [50., 50., 100.]
-  # kd_leg_endeff_pos: [10., 10., 20.]
-  # kp_leg_endeff_orn: [50., 50., 50.]
-  # kd_leg_endeff_orn: [5., 5., 5.]
-  # kp_arm_endeff_pos: [100., 100., 100.]
-  # kd_arm_endeff_pos: [10., 10., 10.]
-  # kp_arm_endeff_orn: [50., 50., 50.]
-  # kd_arm_endeff_orn: [5., 5., 5.]
-
-  # joint_init_pos: [0., 0.75, -1.5, 
-  #                  0., 0.75, -1.5, 
-  #                  0., 0.75, -1.5, 
-  #                  0., 0.75, -1.5,
-  #                  0.,0.5,-1,0.3,0,0.]
-  #                 #  0.,0.5,-1,0.3,0,0.,0.]
-  # joint_init_vel: [0., 0., 0., 
-  #                  0., 0., 0., 
-  #                  0., 0., 0., 
-  #                  0., 0., 0.,
-  #                  0., 0., 0., 0.,0.,0.]
-  #                 #  0., 0., 0., 0., 0.,0.,0.]
   # task-space / joint-space gains
   kp_com_pos: [95., 95., 100.]
   kd_com_pos: [20, 20, 20.]
@@ -204,7 +142,7 @@ planner_variables:
     "swing_leg_endeff_position_task": {"priority": 2, "weight": 0.5}, 
     "swing_arm_endeff_position_task": {"priority": 2, "weight": 0.5},
     "swing_arm_endeff_orientation_task": {"priority": 2, "weight": 0.5},
-    "minimum_motion_task": {"priority": 3, "weight": 0.2}
+    "minimum_motion_task": {"priority": 3, "weight": 0.5}
   }
 
   base_name: "base_link"
@@ -213,7 +151,7 @@ planner_variables:
   leg_endeff_names: ["FL_foot", "FR_foot", "RL_foot", "RR_foot"]
   arm_endeff_names: ["link06"]
 
-  base_des_pos: [0., 0., 0.45, 0., 0., 0., 1.] # pose
+  base_des_pos: [0., 0., 0.4, 0., 0., 0., 1.] # pose
   base_des_vel: [0., 0., 0., 0., 0., 0.]
   joint_des_pos: [0., 0.75, -1.5, 
                    0., 0.75, -1.5, 
@@ -229,5 +167,5 @@ planner_variables:
                    0., 0., 0., 0.,0.,0.]
                   #  0., 0., 0., 0., 0.,0.,0.]
   # arm_des_pos: [0.476825, 0., 0.675473, 0., 0., 0., 1.]
-  arm_des_pos: [0., 0., 0.5, 0., 0., 0., 1.]
+  arm_des_pos: [0.6, 0., 0.845942, 0., 0., 0., -1.]
   arm_des_vel: [0., 0., 0., 0., 0., 0.,0]

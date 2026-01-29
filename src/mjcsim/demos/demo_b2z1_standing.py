@@ -81,6 +81,8 @@ def main(argv):
         print("Limb contact forces: \n", sim_robot.get_limb_contact_forces())
         print("-----------------------------------------------------")
 
+    
+
         # Apply torque to robot
         sim_robot.apply_joint_actions(actions)
         env.step()

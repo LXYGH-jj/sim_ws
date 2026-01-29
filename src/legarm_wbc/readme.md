@@ -35,6 +35,8 @@ source ~/miniconda3/bin/activate
 conda activate mujoco
 python3 ./src/legarm_wbc/demos/demo_b2z1_standing.py /configs/b2z1_standing.yaml
 python3 ./src/legarm_wbc/demos/demo_b2z1_switch.py /configs/b2z1_standing.yaml
+python3 ./src/legarm_wbc/demos/demo_b2z1_switch_copy.py /configs/b2z1_standing_copy.yaml
+
 ```
 
 ### License and Copyrights
