@@ -32,7 +32,7 @@
     <geom name="ground" type="plane" size="10 10 0.1" pos="0 0 -0.1" material="grid" friction="1.2 0.3 0.1"/>
     
     <!-- 调整机器人整体高度，使其站立在地面上 -->
-    <body name="base_link" pos="0 0 0.7">
+    <body name="base_link" pos="0 0 0.55">
       <freejoint/>
       <!-- 原有的机器人几何体全部移入这个body中 -->
       <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.74876 0.74876 0.74876 1" mesh="base_link"/>
@@ -183,6 +183,14 @@
       </body>
      </body> 
   </worldbody>
+
+  <keyframe>
+    <key name="standing_pose" 
+         qpos="0 0 0.55 1 0 0 0
+               0.0 0.75 -1.5    0.0 0.75 -1.5    0.0 0.75 -1.5    0.0 0.75 -1.5
+               0.0 0.0 0.0 0.0 0.0 0.0"/>
+  </keyframe>
+
   <actuator>
     <!-- 腿部驱动器 -->
     <motor joint="FL_hip_joint" gear="1"/>

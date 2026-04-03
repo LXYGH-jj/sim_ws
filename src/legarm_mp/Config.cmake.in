@@ -1,0 +1,20 @@
+@PACKAGE_INIT@
+
+include("${CMAKE_CURRENT_LIST_DIR}/legarm_mpTargets.cmake")
+
+include(CMakeFindDependencyMacro)
+
+# we do not add the other dependencies because these are header files lib
+if(${CMAKE_VERSION} VERSION_LESS "3.15.0")
+    find_package(Eigen3 REQUIRED)
+    find_package(yamlutils REQUIRED)
+    find_package(OsqpEigen REQUIRED)
+    find_package(quad_gait REQUIRED)
+else()
+    find_dependency(Eigen3 REQUIRED)
+    find_dependency(yamlutils REQUIRED)
+    find_dependency(OsqpEigen REQUIRED)
+    find_dependency(quad_gait REQUIRED)
+endif()
+
+check_required_components(legarm_mp)

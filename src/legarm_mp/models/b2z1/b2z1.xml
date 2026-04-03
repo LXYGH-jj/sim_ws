@@ -25,15 +25,14 @@
     <mesh name="z1_Link04" file="z1_Link04.stl"/>
     <mesh name="z1_Link05" file="z1_Link05.stl"/>
     <mesh name="z1_Link06" file="z1_Link06.stl"/>
-
   </asset>
 
   <worldbody>
     <!-- 添加地面 -->
-    <geom name="ground" type="plane" size="10 10 0.1" pos="0 0 -0.1" material="grid" friction="2.0 0.5 0.1"/>
+    <geom name="ground" type="plane" size="10 10 0.1" pos="0 0 -0.1" material="grid" friction="1.2 0.3 0.1"/>
     
     <!-- 调整机器人整体高度，使其站立在地面上 -->
-    <body name="robot_base" pos="0 0 0.7">
+    <body name="base_link" pos="0 0 0.7">
       <freejoint/>
       <!-- 原有的机器人几何体全部移入这个body中 -->
       <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.74876 0.74876 0.74876 1" mesh="base_link"/>
@@ -69,7 +68,7 @@
             <geom size="0.05 0.01225 0.009" pos="0.022 0 -0.1" quat="0.780707 0 0.624897 0" type="box" rgba="0.74876 0.74876 0.74876 1"/>
             <geom size="0.075 0.01225 0.0075" pos="0.036 0 -0.225" quat="0.721382 0 0.692537 0" type="box" rgba="0.74876 0.74876 0.74876 1"/>
             <geom size="0.025 0.014 0.0175" pos="0.023 0 -0.31" quat="0.540302 0 0.841471 0" type="box" rgba="0.74876 0.74876 0.74876 1"/>
-            <geom name="FL_foot" size="0.032" pos="0 0 -0.35" quat="0.707388 0.706825 0 0" contype="1" conaffinity="1" friction="2.0 0.5 0.1"/>
+            <geom name="FL_foot" size="0.032" pos="0 0 -0.35" quat="0.707388 0.706825 0 0" contype="1" conaffinity="1" friction="1.6 0.4 0.1"/>
           </body>
         </body>
       </body>
@@ -93,7 +92,7 @@
             <geom size="0.05 0.01225 0.009" pos="0.022 0 -0.1" quat="0.780707 0 0.624897 0" type="box" rgba="0.74876 0.74876 0.74876 1"/>
             <geom size="0.075 0.01225 0.0075" pos="0.036 0 -0.225" quat="0.721382 0 0.692537 0" type="box" rgba="0.74876 0.74876 0.74876 1"/>
             <geom size="0.025 0.014 0.0175" pos="0.023 0 -0.31" quat="0.540302 0 0.841471 0" type="box" rgba="0.74876 0.74876 0.74876 1"/>
-            <geom name="FR_foot" size="0.032" pos="0 0 -0.35" quat="0.707388 0.706825 0 0" contype="1" conaffinity="1" friction="2.0 0.5 0.1"/>
+            <geom name="FR_foot" size="0.032" pos="0 0 -0.35" quat="0.707388 0.706825 0 0" contype="1" conaffinity="1" friction="1.6 0.4 0.1"/>
           </body>
         </body>
       </body>
@@ -117,7 +116,7 @@
             <geom size="0.05 0.01225 0.009" pos="0.022 0 -0.1" quat="0.780707 0 0.624897 0" type="box" rgba="0.74876 0.74876 0.74876 1"/>
             <geom size="0.075 0.01225 0.0075" pos="0.036 0 -0.225" quat="0.721382 0 0.692537 0" type="box" rgba="0.74876 0.74876 0.74876 1"/>
             <geom size="0.025 0.014 0.0175" pos="0.023 0 -0.31" quat="0.540302 0 0.841471 0" type="box" rgba="0.74876 0.74876 0.74876 1"/>
-            <geom name="RL_foot" size="0.032" pos="0 0 -0.35" quat="0.707388 0.706825 0 0" contype="1" conaffinity="1" friction="2.0 0.5 0.1"/>
+            <geom name="RL_foot" size="0.032" pos="0 0 -0.35" quat="0.707388 0.706825 0 0" contype="1" conaffinity="1" friction="1.6 0.4 0.1"/>
           </body>
         </body>
       </body>
@@ -141,7 +140,7 @@
             <geom size="0.05 0.01225 0.009" pos="0.022 0 -0.1" quat="0.780707 0 0.624897 0" type="box" rgba="0.74876 0.74876 0.74876 1"/>
             <geom size="0.075 0.01225 0.0075" pos="0.036 0 -0.225" quat="0.721382 0 0.692537 0" type="box" rgba="0.74876 0.74876 0.74876 1"/>
             <geom size="0.025 0.014 0.0175" pos="0.023 0 -0.31" quat="0.540302 0 0.841471 0" type="box" rgba="0.74876 0.74876 0.74876 1"/>
-            <geom name="RR_foot" size="0.032" pos="0 -8.6984e-05 -0.35" quat="0.707388 0.706825 0 0" contype="1" conaffinity="1" friction="2.0 0.5 0.1"/>
+            <geom name="RR_foot" size="0.032" pos="0 0 -0.35" quat="0.707388 0.706825 0 0" contype="1" conaffinity="1" friction="1.6 0.4 0.1"/>
           </body>
         </body>
       </body>

@@ -180,8 +180,45 @@ def main(argv):
         base_pos = sim_robot.get_base_position()
         base_quat = sim_robot.get_base_quaternion()
 
-        print(f"Base position: {base_pos}")
-        print(f"Base quaternion: {base_quat}")
+        # print(f"Base position: {base_pos}")
+        # print(f"Base quaternion: {base_quat}")
+        # ===== 第 177-210 行（修改后）=====
+        sim_base_pose = np.concatenate((
+            sim_robot.get_base_position(), 
+            sim_robot.get_base_quaternion()
+        ))
+
+        base_pos = sim_robot.get_base_position()
+        base_quat = sim_robot.get_base_quaternion()
+
+        # ========================================================================
+        # 添加：打印机械臂末端相对基座的坐标
+        # ========================================================================
+        # 获取机械臂末端（link06）的世界坐标
+        gripper_pose = sim_robot.get_link_pose("link06")
+        gripper_pos_world = gripper_pose[0:3]
+        gripper_quat_world = gripper_pose[3:7]
+
+        # 计算相对于基座的位置（考虑基座旋转）
+        # gripper_rel = R_base^T * (gripper_world - base_world)
+        base_rot = R.from_quat(base_quat).as_matrix()
+        gripper_rel_pos = base_rot.T.dot(gripper_pos_world - base_pos)
+        gripper_rel_quat = R.from_quat(base_quat).inv() * R.from_quat(gripper_quat_world)
+
+        # 每 1 秒打印一次（避免输出太多）
+        if int(current_time * 500) % 500 == 0:  # 每 1 秒
+            print(f"\n{'='*60}")
+            print(f"时间 {current_time:.2f}s - 机械臂末端位姿")
+            print(f"{'='*60}")
+            print(f"基座位置 (世界坐标系): [{base_pos[0]:.4f}, {base_pos[1]:.4f}, {base_pos[2]:.4f}]")
+            print(f"基座姿态 (四元数):     [{base_quat[0]:.4f}, {base_quat[1]:.4f}, {base_quat[2]:.4f}, {base_quat[3]:.4f}]")
+            print(f"末端位置 (世界坐标系): [{gripper_pos_world[0]:.4f}, {gripper_pos_world[1]:.4f}, {gripper_pos_world[2]:.4f}]")
+            print(f"末端位置 (基座坐标系): [{gripper_rel_pos[0]:.4f}, {gripper_rel_pos[1]:.4f}, {gripper_rel_pos[2]:.4f}] ← 用于 gripper_init_rel_pos")
+            print(f"末端姿态 (基座坐标系): {gripper_rel_quat.as_quat()}")
+            print(f"{'='*60}\n")
+        # ========================================================================
+
+
         sim_base_velocity = np.concatenate((
             sim_robot.get_base_linear_velocity(),
             sim_robot.get_base_angular_velocity()

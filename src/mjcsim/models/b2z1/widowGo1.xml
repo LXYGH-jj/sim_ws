@@ -1,0 +1,166 @@
+<mujoco model="widowGo1">
+  <compiler autolimits="true" angle="radian" meshdir="../meshes_mujoco/"/>
+
+  <asset>
+    <texture name="grid" type="2d" builtin="checker" rgb1=".1 .2 .3" rgb2=".2 .3 .4" width="300" height="300"/>
+    <material name="grid" texture="grid" texrepeat="1 1" texuniform="true" reflectance=".2"/>
+    
+    <mesh name="wx250s_1_base" file="wx250s_1_base.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="wx250s_2_shoulder" file="wx250s_2_shoulder.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="wx250s_3_upper_arm" file="wx250s_3_upper_arm.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="wx250s_4_upper_forearm" file="wx250s_4_upper_forearm.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="wx250s_5_lower_forearm" file="wx250s_5_lower_forearm.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="wx250s_6_wrist" file="wx250s_6_wrist.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="wx250s_7_gripper" file="wx250s_7_gripper.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="wx250s_8_gripper_prop" file="wx250s_8_gripper_prop.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="wx250s_9_gripper_bar" file="wx250s_9_gripper_bar.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="wx250s_10_gripper_finger" file="wx250s_10_gripper_finger.stl" scale="0.001 0.001 0.001"/>
+  </asset>
+
+  <worldbody>
+    <!-- 添加地面 -->
+    <geom name="ground" type="plane" size="10 10 0.1" pos="0 0 -0.1" material="grid" friction="2.0 0.5 0.1"/>
+    
+    <!-- 添加机器人主体，使其能够自由活动 -->
+    <body name="robot_base" pos="0 0 0.7">
+      <freejoint/>
+      
+      <!-- 原有的机器人基座几何体 -->
+      <geom pos="0.03 0 0.057" quat="0.707107 0 0 0.707107" type="mesh" rgba="0 0 0 1" mesh="wx250s_1_base"/>
+      <geom size="0.1881 0.04675 0.057" type="box" rgba="1 0.423529 0.0392157 1"/>
+      <geom size="0.0005 0.0005 0.0005" pos="-0.01592 -0.06659 -0.00617" type="box"/>
+      
+      <!-- 机械臂部分 -->
+      <body name="wx250s/shoulder_link" pos="0.03 0 0.129">
+        <inertial pos="2.23482e-05 4.14609e-05 0.0066287" quat="0.0130352 0.706387 0.012996 0.707586" mass="0.480879" diaginertia="0.000588946 0.000555655 0.000378999"/>
+        <joint name="widow_waist" pos="0 0 0" axis="0 0 1" actuatorfrcrange="-10 10"/>
+        <geom pos="0 0 -0.003" quat="0.707107 0 0 0.707107" type="mesh" rgba="0 0 0 1" mesh="wx250s_2_shoulder"/>
+        <body name="wx250s/upper_arm_link" pos="0 0 0.03865">
+          <inertial pos="0.0171605 2.725e-07 0.191323" quat="0.705539 0.0470667 -0.0470667 0.705539" mass="0.430811" diaginertia="0.00364425 0.003463 0.000399348"/>
+          <joint name="widow_shoulder" pos="0 0 0" axis="0 1 0" range="-1.88496 1.98968" actuatorfrcrange="-20 20"/>
+          <geom pos="0 0 0" quat="0.707107 0 0 0.707107" type="mesh" rgba="0 0 0 1" mesh="wx250s_3_upper_arm"/>
+          <body name="wx250s/upper_forearm_link" pos="0.04975 0 0.25">
+            <inertial pos="0.107963 0.000115876 0" quat="0.000980829 0.707106 -0.000980829 0.707106" mass="0.234589" diaginertia="0.000888 0.000887807 3.97035e-05"/>
+            <joint name="widow_elbow" pos="0 0 0" axis="0 1 0" range="-2.14675 1.6057" actuatorfrcrange="-15 15"/>
+            <geom type="mesh" rgba="0 0 0 1" mesh="wx250s_4_upper_forearm"/>
+            <body name="wx250s/lower_forearm_link" pos="0.175 0 0">
+              <inertial pos="0.0374395 0.00522252 0" quat="-0.0732511 0.703302 0.0732511 0.703302" mass="0.220991" diaginertia="0.0001834 0.000172527 5.88633e-05"/>
+              <joint name="widow_forearm_roll" pos="0 0 0" axis="1 0 0" range="-3.14158 3.14158" actuatorfrcrange="-2 2"/>
+              <geom pos="0 0 0" quat="0 1 0 0" type="mesh" rgba="0 0 0 1" mesh="wx250s_5_lower_forearm"/>
+              <body name="wx250s/wrist_link" pos="0.075 0 0">
+                <inertial pos="0.04236 -1.0663e-05 0.010577" quat="0.608721 0.363497 -0.359175 0.606895" mass="0.084957" diaginertia="3.29057e-05 3.082e-05 2.68343e-05"/>
+                <joint name="widow_wrist_angle" pos="0 0 0" axis="0 1 0" range="-1.74533 2.14675" actuatorfrcrange="-5 5"/>
+                <geom quat="0.707107 0 0 0.707107" type="mesh" rgba="0 0 0 1" mesh="wx250s_6_wrist"/>
+                <body name="wx250s/gripper_link" pos="0.065 0 0">
+                  <inertial pos="0.0184749 -0.00696578 0.0181114" quat="0.72956 0.238778 -0.402727 0.498537" mass="0.114424" diaginertia="0.00310905 0.00308736 0.00305986"/>
+                  <joint name="widow_wrist_rotate" pos="0 0 0" axis="1 0 0" range="-3.14158 3.14158" actuatorfrcrange="-1 1"/>
+                  <geom pos="-0.02 0 0" quat="0.707107 0 0 0.707107" type="mesh" rgba="0 0 0 1" mesh="wx250s_7_gripper"/>
+                  <geom pos="-0.02 0 0" quat="0.707107 0 0 0.707107" type="mesh" rgba="0 0 0 1" mesh="wx250s_8_gripper_prop"/>
+                  <geom pos="-0.02 0 0" quat="0.707107 0 0 0.707107" type="mesh" rgba="0 0 0 1" mesh="wx250s_9_gripper_bar"/>
+                  <body name="wx250s/left_finger_link" pos="0.066 0 0">
+                    <inertial pos="0.013816 0 0" quat="0.705384 0.705384 -0.0493271 -0.0493271" mass="0.016246" diaginertia="4.79509e-06 3.7467e-06 1.48651e-06"/>
+                    <joint name="widow_left_finger" pos="0 0 0" axis="0 1 0" type="slide" range="0.015 0.037" actuatorfrcrange="-5 5" frictionloss="1000"/>
+                    <geom pos="0 0.005 0" quat="0 0 0 -1" type="mesh" rgba="0 0 0 1" mesh="wx250s_10_gripper_finger"/>
+                  </body>
+                  <body name="wx250s/right_finger_link" pos="0.066 0 0">
+                    <inertial pos="0.013816 0 0" quat="0.705384 0.705384 0.0493271 0.0493271" mass="0.016246" diaginertia="4.79509e-06 3.7467e-06 1.48651e-06"/>
+                    <joint name="widow_right_finger" pos="0 0 0" axis="0 1 0" type="slide" range="-0.037 -0.015" actuatorfrcrange="-5 5" frictionloss="1000"/>
+                    <geom pos="0 -0.005 0" quat="0 0 1 0" type="mesh" rgba="0 0 0 1" mesh="wx250s_10_gripper_finger"/>
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+      
+      <!-- 四条腿部分 -->
+      <body name="FR_hip" pos="0.1881 -0.04675 0">
+        <inertial pos="-0.00541 0.00074 6e-06" quat="0.46479 0.464271 0.528995 0.537203" mass="0.591" diaginertia="0.000641022 0.000457646 0.000369171"/>
+        <joint name="FR_hip_joint" pos="0 0 0" axis="1 0 0" range="-1.0472 1.0472" actuatorfrcrange="-23.7 23.7"/>
+        <body name="FR_thigh" pos="0 -0.08 0">
+          <inertial pos="-0.003468 0.018947 -0.032736" quat="0.999398 -0.00213721 -0.0341314 -0.00590909" mass="0.92" diaginertia="0.00587404 0.00559622 0.00104903"/>
+          <joint name="FR_thigh_joint" pos="0 0 0" axis="0 1 0" range="-0.663225 2.96706" actuatorfrcrange="-23.7 23.7"/>
+          <geom size="0.1065 0.01225 0.017" pos="0 0 -0.1065" quat="0.707107 0 0.707107 0" type="box" rgba="1 0.423529 0.0392157 1"/>
+          <body name="FR_calf" pos="0 0 -0.213">
+            <inertial pos="0.00431134 0.000896424 -0.150771" quat="0.762414 0.00939942 0.0179881 0.646772" mass="0.191" diaginertia="0.0033064 0.00329235 3.62038e-05"/>
+            <joint name="FR_calf_joint" pos="0 0 0" axis="0 1 0" range="-2.72271 -0.837758" actuatorfrcrange="-23.7 23.7"/>
+            <geom size="0.1065 0.008 0.008" pos="0 0 -0.1065" quat="0.707107 0 0.707107 0" type="box" rgba="1 0.423529 0.0392157 1"/>
+            <geom size="0.02" pos="0 0 -0.213" rgba="1 0.423529 0.0392157 1"/>
+          </body>
+        </body>
+      </body>
+      
+      <body name="FL_hip" pos="0.1881 0.04675 0">
+        <inertial pos="-0.00541 -0.00074 6e-06" quat="0.537203 0.528995 0.464271 0.46479" mass="0.591" diaginertia="0.000641022 0.000457646 0.000369171"/>
+        <joint name="FL_hip_joint" pos="0 0 0" axis="1 0 0" range="-1.0472 1.0472" actuatorfrcrange="-23.7 23.7"/>
+        <body name="FL_thigh" pos="0 0.08 0">
+          <inertial pos="-0.003468 -0.018947 -0.032736" quat="0.999398 0.00213721 -0.0341314 0.00590909" mass="0.92" diaginertia="0.00587404 0.00559622 0.00104903"/>
+          <joint name="FL_thigh_joint" pos="0 0 0" axis="0 1 0" range="-0.663225 2.96706" actuatorfrcrange="-23.7 23.7"/>
+          <geom size="0.1065 0.01225 0.017" pos="0 0 -0.1065" quat="0.707107 0 0.707107 0" type="box" rgba="1 0.423529 0.0392157 1"/>
+          <body name="FL_calf" pos="0 0 -0.213">
+            <inertial pos="0.00431134 0.000896424 -0.150771" quat="0.762414 0.00939942 0.0179881 0.646772" mass="0.191" diaginertia="0.0033064 0.00329235 3.62038e-05"/>
+            <joint name="FL_calf_joint" pos="0 0 0" axis="0 1 0" range="-2.72271 -0.837758" actuatorfrcrange="-23.7 23.7"/>
+            <geom size="0.1065 0.008 0.008" pos="0 0 -0.1065" quat="0.707107 0 0.707107 0" type="box" rgba="1 0.423529 0.0392157 1"/>
+            <geom size="0.02" pos="0 0 -0.213" rgba="1 0.423529 0.0392157 1"/>
+          </body>
+        </body>
+      </body>
+      
+      <body name="RR_hip" pos="-0.1881 -0.04675 0">
+        <inertial pos="0.00541 0.00074 6e-06" quat="0.528995 0.537203 0.46479 0.464271" mass="0.591" diaginertia="0.000641022 0.000457646 0.000369171"/>
+        <joint name="RR_hip_joint" pos="0 0 0" axis="1 0 0" range="-1.0472 1.0472" actuatorfrcrange="-23.7 23.7"/>
+        <body name="RR_thigh" pos="0 -0.08 0">
+          <inertial pos="-0.003468 0.018947 -0.032736" quat="0.999398 -0.00213721 -0.0341314 -0.00590909" mass="0.92" diaginertia="0.00587404 0.00559622 0.00104903"/>
+          <joint name="RR_thigh_joint" pos="0 0 0" axis="0 1 0" range="-0.663225 2.96706" actuatorfrcrange="-23.7 23.7"/>
+          <geom size="0.1065 0.01225 0.017" pos="0 0 -0.1065" quat="0.707107 0 0.707107 0" type="box" rgba="1 0.423529 0.0392157 1"/>
+          <body name="RR_calf" pos="0 0 -0.213">
+            <inertial pos="0.00431134 0.000896424 -0.150771" quat="0.762414 0.00939942 0.0179881 0.646772" mass="0.191" diaginertia="0.0033064 0.00329235 3.62038e-05"/>
+            <joint name="RR_calf_joint" pos="0 0 0" axis="0 1 0" range="-2.72271 -0.837758" actuatorfrcrange="-23.7 23.7"/>
+            <geom size="0.1065 0.008 0.008" pos="0 0 -0.1065" quat="0.707107 0 0.707107 0" type="box" rgba="1 0.423529 0.0392157 1"/>
+            <geom size="0.02" pos="0 0 -0.213" rgba="1 0.423529 0.0392157 1"/>
+          </body>
+        </body>
+      </body>
+      
+      <body name="RL_hip" pos="-0.1881 0.04675 0">
+        <inertial pos="0.00541 -0.00074 6e-06" quat="0.464271 0.46479 0.537203 0.528995" mass="0.591" diaginertia="0.000641022 0.000457646 0.000369171"/>
+        <joint name="RL_hip_joint" pos="0 0 0" axis="1 0 0" range="-1.0472 1.0472" actuatorfrcrange="-23.7 23.7"/>
+        <body name="RL_thigh" pos="0 0.08 0">
+          <inertial pos="-0.003468 -0.018947 -0.032736" quat="0.999398 0.00213721 -0.0341314 0.00590909" mass="0.92" diaginertia="0.00587404 0.00559622 0.00104903"/>
+          <joint name="RL_thigh_joint" pos="0 0 0" axis="0 1 0" range="-0.663225 2.96706" actuatorfrcrange="-23.7 23.7"/>
+          <geom size="0.1065 0.01225 0.017" pos="0 0 -0.1065" quat="0.707107 0 0.707107 0" type="box" rgba="1 0.423529 0.0392157 1"/>
+          <body name="RL_calf" pos="0 0 -0.213">
+            <inertial pos="0.00431134 0.000896424 -0.150771" quat="0.762414 0.00939942 0.0179881 0.646772" mass="0.191" diaginertia="0.0033064 0.00329235 3.62038e-05"/>
+            <joint name="RL_calf_joint" pos="0 0 0" axis="0 1 0" range="-2.72271 -0.837758" actuatorfrcrange="-23.7 23.7"/>
+            <geom size="0.1065 0.008 0.008" pos="0 0 -0.1065" quat="0.707107 0 0.707107 0" type="box" rgba="1 0.423529 0.0392157 1"/>
+            <geom size="0.02" pos="0 0 -0.213" rgba="1 0.423529 0.0392157 1"/>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+
+  <actuator>
+  <motor name="waist_motor" joint="widow_waist" gear="1"/>
+  <motor name="shoulder_motor" joint="widow_shoulder" gear="1"/>
+  <motor name="elbow_motor" joint="widow_elbow" gear="1"/>
+  <motor name="forearm_roll_motor" joint="widow_forearm_roll" gear="1"/>
+  <motor name="wrist_angle_motor" joint="widow_wrist_angle" gear="1"/>
+  <motor name="wrist_rotate_motor" joint="widow_wrist_rotate" gear="1"/>
+  <motor name="left_finger_motor" joint="widow_left_finger" gear="1"/>
+  <motor name="right_finger_motor" joint="widow_right_finger" gear="1"/>
+  <motor name="FR_hip_motor" joint="FR_hip_joint" gear="1"/>
+  <motor name="FR_thigh_motor" joint="FR_thigh_joint" gear="1"/>
+  <motor name="FR_calf_motor" joint="FR_calf_joint" gear="1"/>
+  <motor name="FL_hip_motor" joint="FL_hip_joint" gear="1"/>
+  <motor name="FL_thigh_motor" joint="FL_thigh_joint" gear="1"/>
+  <motor name="FL_calf_motor" joint="FL_calf_joint" gear="1"/>
+  <motor name="RR_hip_motor" joint="RR_hip_joint" gear="1"/>
+  <motor name="RR_thigh_motor" joint="RR_thigh_joint" gear="1"/>
+  <motor name="RR_calf_motor" joint="RR_calf_joint" gear="1"/>
+  <motor name="RL_hip_motor" joint="RL_hip_joint" gear="1"/>
+  <motor name="RL_thigh_motor" joint="RL_thigh_joint" gear="1"/>
+  <motor name="RL_calf_motor" joint="RL_calf_joint" gear="1"/>
+</actuator>
+</mujoco>

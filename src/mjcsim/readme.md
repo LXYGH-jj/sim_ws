@@ -33,6 +33,8 @@ env = MujocoEnvWithGround()
 cd <work_folder>/
 
 python3 ./src/mjcsim/demos/demo_b2z1_standing.py /configs/b2z1_standing.yaml
+python3 ./src/mjcsim/demos/demo_b2_standing.py /configs/b2_standing.yaml
+python3 ./src/mjcsim/demos/demo_go2_standing.py /configs/go2_standing.yaml
 ```
 
 ### License and Copyrights

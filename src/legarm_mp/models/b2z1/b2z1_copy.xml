@@ -18,22 +18,21 @@
     <mesh name="RR_hip" file="RR_hip.stl"/>
     <mesh name="RR_thigh" file="RR_thigh.stl"/>
     <mesh name="RR_calf" file="RR_calf.stl"/>
-    <mesh name="z1_Link00" file="z1_Link00.stl"/>
+    <!-- <mesh name="z1_Link00" file="z1_Link00.stl"/>
     <mesh name="z1_Link01" file="z1_Link01.stl"/>
     <mesh name="z1_Link02" file="z1_Link02.stl"/>
     <mesh name="z1_Link03" file="z1_Link03.stl"/>
     <mesh name="z1_Link04" file="z1_Link04.stl"/>
     <mesh name="z1_Link05" file="z1_Link05.stl"/>
-    <mesh name="z1_Link06" file="z1_Link06.stl"/>
-
+    <mesh name="z1_Link06" file="z1_Link06.stl"/> -->
   </asset>
 
   <worldbody>
     <!-- 添加地面 -->
-    <geom name="ground" type="plane" size="10 10 0.1" pos="0 0 -0.1" material="grid" friction="2.0 0.5 0.1"/>
+    <geom name="ground" type="plane" size="10 10 0.1" pos="0 0 -0.1" material="grid" friction="1.2 0.3 0.1"/>
     
     <!-- 调整机器人整体高度，使其站立在地面上 -->
-    <body name="robot_base" pos="0 0 0.7">
+    <body name="base_link" pos="0 0 0.7">
       <freejoint/>
       <!-- 原有的机器人几何体全部移入这个body中 -->
       <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.74876 0.74876 0.74876 1" mesh="base_link"/>
@@ -47,7 +46,7 @@
       <geom size="0.05 0.01" pos="-0.20205 -0.072 0" quat="0.707107 0 0.707107 0" type="cylinder"/>
       <geom size="0.1 0.1 0.025" pos="0.15 0 0.1" type="box" contype="0" conaffinity="0" group="1" density="0" rgba="0.85 0.85 0.85 1"/>
       <geom size="0.1 0.1 0.025" pos="0.15 0 0.1" type="box" rgba="0.85 0.85 0.85 1"/>
-      <geom pos="0.17 0 0.125" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.85 0.85 0.85 1" mesh="z1_Link00"/>
+      <!-- <geom pos="0.17 0 0.125" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.85 0.85 0.85 1" mesh="z1_Link00"/> -->
       <geom size="0.0325 0.0255" pos="0.17 0 0.1505" type="cylinder" rgba="0.85 0.85 0.85 1"/>
       <body name="FL_hip" pos="0.3285 0.072 0">
         <inertial pos="-0.00274412 -0.00822657 0" quat="0.507287 0.506932 0.492619 0.492957" mass="2.9464" diaginertia="0.00505471 0.00402681 0.00348237"/>
@@ -69,7 +68,7 @@
             <geom size="0.05 0.01225 0.009" pos="0.022 0 -0.1" quat="0.780707 0 0.624897 0" type="box" rgba="0.74876 0.74876 0.74876 1"/>
             <geom size="0.075 0.01225 0.0075" pos="0.036 0 -0.225" quat="0.721382 0 0.692537 0" type="box" rgba="0.74876 0.74876 0.74876 1"/>
             <geom size="0.025 0.014 0.0175" pos="0.023 0 -0.31" quat="0.540302 0 0.841471 0" type="box" rgba="0.74876 0.74876 0.74876 1"/>
-            <geom name="FL_foot" size="0.032" pos="0 0 -0.35" quat="0.707388 0.706825 0 0" contype="1" conaffinity="1" friction="2.0 0.5 0.1"/>
+            <geom name="FL_foot" size="0.032" pos="0 0 -0.35" quat="0.707388 0.706825 0 0" contype="1" conaffinity="1" friction="1.6 0.4 0.1"/>
           </body>
         </body>
       </body>
@@ -93,7 +92,7 @@
             <geom size="0.05 0.01225 0.009" pos="0.022 0 -0.1" quat="0.780707 0 0.624897 0" type="box" rgba="0.74876 0.74876 0.74876 1"/>
             <geom size="0.075 0.01225 0.0075" pos="0.036 0 -0.225" quat="0.721382 0 0.692537 0" type="box" rgba="0.74876 0.74876 0.74876 1"/>
             <geom size="0.025 0.014 0.0175" pos="0.023 0 -0.31" quat="0.540302 0 0.841471 0" type="box" rgba="0.74876 0.74876 0.74876 1"/>
-            <geom name="FR_foot" size="0.032" pos="0 0 -0.35" quat="0.707388 0.706825 0 0" contype="1" conaffinity="1" friction="2.0 0.5 0.1"/>
+            <geom name="FR_foot" size="0.032" pos="0 0 -0.35" quat="0.707388 0.706825 0 0" contype="1" conaffinity="1" friction="1.6 0.4 0.1"/>
           </body>
         </body>
       </body>
@@ -117,7 +116,7 @@
             <geom size="0.05 0.01225 0.009" pos="0.022 0 -0.1" quat="0.780707 0 0.624897 0" type="box" rgba="0.74876 0.74876 0.74876 1"/>
             <geom size="0.075 0.01225 0.0075" pos="0.036 0 -0.225" quat="0.721382 0 0.692537 0" type="box" rgba="0.74876 0.74876 0.74876 1"/>
             <geom size="0.025 0.014 0.0175" pos="0.023 0 -0.31" quat="0.540302 0 0.841471 0" type="box" rgba="0.74876 0.74876 0.74876 1"/>
-            <geom name="RL_foot" size="0.032" pos="0 0 -0.35" quat="0.707388 0.706825 0 0" contype="1" conaffinity="1" friction="2.0 0.5 0.1"/>
+            <geom name="RL_foot" size="0.032" pos="0 0 -0.35" quat="0.707388 0.706825 0 0" contype="1" conaffinity="1" friction="1.6 0.4 0.1"/>
           </body>
         </body>
       </body>
@@ -141,11 +140,11 @@
             <geom size="0.05 0.01225 0.009" pos="0.022 0 -0.1" quat="0.780707 0 0.624897 0" type="box" rgba="0.74876 0.74876 0.74876 1"/>
             <geom size="0.075 0.01225 0.0075" pos="0.036 0 -0.225" quat="0.721382 0 0.692537 0" type="box" rgba="0.74876 0.74876 0.74876 1"/>
             <geom size="0.025 0.014 0.0175" pos="0.023 0 -0.31" quat="0.540302 0 0.841471 0" type="box" rgba="0.74876 0.74876 0.74876 1"/>
-            <geom name="RR_foot" size="0.032" pos="0 -8.6984e-05 -0.35" quat="0.707388 0.706825 0 0" contype="1" conaffinity="1" friction="2.0 0.5 0.1"/>
+            <geom name="RR_foot" size="0.032" pos="0 0 -0.35" quat="0.707388 0.706825 0 0" contype="1" conaffinity="1" friction="1.6 0.4 0.1"/>
           </body>
         </body>
       </body>
-      <body name="link01" pos="0.17 0 0.1835">
+      <!-- <body name="link01" pos="0.17 0 0.1835">
         <inertial pos="2.47e-06 -0.00025198 0.0231717" quat="0.705633 0.708578 -0.000280458 0.000356448" mass="0.673326" diaginertia="0.00128328 0.000839362 0.000719308"/>
         <joint name="joint1" pos="0 0 0" axis="0 0 1" range="-2.61799 2.61799" actuatorfrcrange="-30 30" damping="1" frictionloss="1"/>
         <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.85 0.85 0.85 1" mesh="z1_Link01"/>
@@ -181,7 +180,7 @@
             </body>
           </body>
         </body>
-      </body>
+      </body> -->
      </body> 
   </worldbody>
   <actuator>
@@ -202,12 +201,12 @@
     <motor joint="RR_thigh_joint" gear="1"/>
     <motor joint="RR_calf_joint" gear="1"/>
     
-    <!-- 机械臂驱动器 -->
+    <!-- 机械臂驱动器
     <motor joint="joint1" gear="1"/>
     <motor joint="joint2" gear="1"/>
     <motor joint="joint3" gear="1"/>
     <motor joint="joint4" gear="1"/>
     <motor joint="joint5" gear="1"/>
-    <motor joint="joint6" gear="1"/>
+    <motor joint="joint6" gear="1"/> -->
   </actuator>
 </mujoco>

@@ -11,6 +11,8 @@ import numpy as np
 import mujoco as mjc
 
 import xml.etree.ElementTree as ET
+from scipy.spatial.transform import Rotation as R
+
 
 from mjcsim.joint_controller import JointController
 
@@ -63,7 +65,9 @@ class SimRobotInterface:
         self.rng = np.random.default_rng()
 
         # self.init_orn_inv = np.array([1.0, 0.0, 0.0, 0.0])
-        self.init_orn_inv = np.array([0.0, 0.0, 0.0, 1.0]) 
+        # self.init_orn_inv = np.array([0.0, 0.0, 0.0, 1.0]) 
+        self.init_orn_inv = self._quaternion_conjugate(self.base_init_pos[3:7])
+
         self.joint_qpos_indices = []
         self.joint_dof_indices = []
         self.joint_states = []
@@ -211,7 +215,7 @@ class SimRobotInterface:
         """Transform velocity from world frame to base frame
         Args:
             velocity_world: velocity vector in world frame
-            orientation: current orientation quaternion [w, x, y, z]
+            orientation: current orientation quaternion [x, y, z, w]  # 修正为 xyzw
         Returns:
             velocity vector in base frame
         """
@@ -355,7 +359,14 @@ class SimRobotInterface:
         # Update the applied joint torque
         self.applied_joint_torques = joint_torque
         
-        for i, joint_name in enumerate(self.joint_names):
+        # for i, joint_name in enumerate(self.joint_names):
+        #     if i < len(self.data.ctrl):
+        #         self.data.ctrl[i] = joint_torque[i]
+        # for i, joint_id in enumerate(self.joint_ids):
+        #     ctrl_idx = i  # MuJoCo 中 ctrl 数组索引与关节顺序一致
+        #     if ctrl_idx < len(self.data.ctrl):
+        #         self.data.ctrl[ctrl_idx] = joint_torque[i]
+        for i in range(len(self.joint_names)):
             if i < len(self.data.ctrl):
                 self.data.ctrl[i] = joint_torque[i]
 
@@ -526,33 +537,45 @@ class SimRobotInterface:
     
     
 
+    # def get_base_rotation(self):
+    #     """Get the robot's base orientation in rotation matrix.
+
+    #     Returns:
+    #         base_orn (ndarray): rotation matrix of base orientation.
+    #     """
+    #     # return self._quat_to_rot(self.base_orn)
+    #     rot_matrix = self._quat_to_rot(self.base_orn)
+    #     return rot_matrix.flatten()
     def get_base_rotation(self):
         """Get the robot's base orientation in rotation matrix.
 
         Returns:
-            base_orn (ndarray): rotation matrix of base orientation.
+            base_orn (ndarray): rotation matrix of base orientation (3x3).
         """
-        # return self._quat_to_rot(self.base_orn)
         rot_matrix = self._quat_to_rot(self.base_orn)
-        return rot_matrix.flatten()
+        return rot_matrix  # 返回 3x3 矩阵，与 PyBullet 一致
 
     
 
+  
+    # def get_base_euler_rpy(self):
+    #     """Get base orientation in Euler RPY format (ZYX order)."""
+    #     quat_wxyz = self._xyzw_to_mjc_quat(self.base_orn)
+    #     # scipy 使用 xyzw 格式
+    #     r = R.from_quat([quat_wxyz[1], quat_wxyz[2], quat_wxyz[3], quat_wxyz[0]])
+    #     # 使用 'zyx' 顺序以匹配 MuJoCo 的输出
+    #     euler = r.as_euler('zyx', degrees=False)
+    #     return euler
     def get_base_euler_rpy(self):
-        """Get the robot's base orientation in euler angles.
+        """Get the robot's base orientation in euler rpy.
 
         Returns:
-            base_orn (ndarray): euler rpy of base orientation.
+            base_orn (ndarray): euler rpy of base orientation [roll, pitch, yaw].
         """
-        # Convert quaternion to euler angles using MuJoCo function
-        euler = np.zeros(3)
-        # MuJoCo uses w, x, y, z order for quaternions
-        # quat = self.base_orn
-        # mjc.mju_quat2Euler(euler, quat)
-        quat_wxyz = self._xyzw_to_mjc_quat(self.base_orn)
-        mjc.mju_quat2Euler(euler, quat_wxyz)
+        # scipy 使用 xyzw 格式，与 PyBullet 一致
+        r = R.from_quat(self.base_orn)  # 直接传入 [x,y,z,w]
+        euler = r.as_euler('xyz', degrees=False)  # 使用 xyz 顺序得到 [roll, pitch, yaw]
         return euler
-
     
 
     
@@ -628,6 +651,10 @@ class SimRobotInterface:
                 pass
 
         return [contact_states[limb_name] for limb_name in self.limb_names]
+    
+    def _quaternion_conjugate(self, quat_xyzw):
+        """计算四元数共轭（单位四元数的逆）"""
+        return np.array([-quat_xyzw[0], -quat_xyzw[1], -quat_xyzw[2], quat_xyzw[3]])
 
     def apply_joint_torques(self, names, torques):
         """Set the desired torques to the joints.

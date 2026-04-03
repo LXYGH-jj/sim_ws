@@ -38,10 +38,10 @@ function(get_python_install_dir output)
   find_package(Python REQUIRED)
   # code to find installation path for python libs
   set(_python_code
-      "from distutils.sysconfig import get_python_lib"
+      "from sysconfig import get_path"
       "import os"
       "install_path = '${CMAKE_INSTALL_PREFIX}'"
-      "python_lib = get_python_lib(prefix=install_path)"
+      "python_lib = get_path('purelib', vars={'base': install_path})"
       "rel_path = os.path.relpath(python_lib, start=install_path)"
       "print(rel_path.replace(os.sep, '/'))")
   execute_process(

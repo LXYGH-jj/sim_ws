@@ -104,6 +104,11 @@ class MujocoEnv:
                 except Exception:
                     pass
                 self.data = mujoco.MjData(self.model)
+
+                # 激活 keyframe 设置初始姿态
+                if self.model.nkey > 0:
+                    mujoco.mj_resetDataKeyframe(self.model, self.data, 0)  # 使用第 0 个 keyframe
+
                 if self.gui:
                     self._create_viewer()
                 if hasattr(robot, "attach_to_sim"):
